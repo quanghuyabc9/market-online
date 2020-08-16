@@ -1,0 +1,109 @@
+{{#section 'javascript'}}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+<script src="//www.google.com/recaptcha/api.js?hl=en" async defer></script>
+<script src="./assets/js/daterangepicker.js"></script>
+<script src="./assets/js/moment.min.js"></script>
+{{/section}}
+
+{{#section 'css'}}
+<!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="./assets/css/signin_style.css" />
+<link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
+{{/section}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-7 col-lg-5 mx-auto">
+            <img class="mt-5 rounded" src="./assets/images/background_signup.png" />
+        </div>
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <a href="/">
+                        <img class="rounded mx-auto d-block mb-1" src="./assets/images/brand.png" width="40" height="40"
+                            alt="brand icon">
+                    </a>
+                    <h5 class="card-title text-center">Tham gia market online</br><b>Tạo tài khoản</b></h5>
+
+                    {{#if reCAPTCHA}}
+                    <div class="alert alert-danger" role="alert">
+                        Vui lòng xác nhận reCAPTCHA 
+                    </div>
+                    {{/if}}
+                    {{#if EmailExist}}
+                    <div class="alert alert-danger" role="alert">
+                        Email này đã tồn tại, vui lòng chọn email khác !
+                    </div>
+                    {{/if}}
+                    <form class="form-signin" action="/signup" method="post">
+                        <div class="form-label-group">
+                            <input name="username" type="text" id="inputUsername" class="form-control"
+                                placeholder="Tên đăng nhập" required autofocus>
+                            <label for="inputUsername">Tên đăng nhập</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input name="password" type="password" id="inputPassword" class="form-control"
+                                placeholder="Mật khẩu" required>
+                            <label for="inputPassword">Mật khẩu</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input name="fullname" type="text" id="inputFullname" class="form-control"
+                                placeholder="Họ tên" required>
+                            <label for="inputFullname">Họ tên</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email"
+                                required>
+                            <label for="inputEmail">Email</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input name="address" type="text" id="inputAddress" class="form-control"
+                                placeholder="Địa chỉ" required>
+                            <label for="inputAddress">Địa chỉ</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input name="phoneNumber" type="phone" id="inputPhoneNumber" class="form-control"
+                                placeholder="Số điện thoại" required>
+                            <label for="inputPhoneNumber">Số điện thoại</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input name="DOB" type="date" id="inputDOB" class="form-control" placeholder="Ngày sinh"
+                                required>
+                            <label for="inputDOB">Ngày sinh</label>
+                        </div>
+                        <div class="form-label-group">
+                            <select name="gender" id="inputGender" class="form-control">
+                                <option value= '0'>Giới tính</option>
+                                <option value= '1'>Nam</option>
+                                <option value= '2'>Nữ</option>
+                                <option value= '3'>Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-label-group">
+                            <select name="typeAccount" id="inputTypeAccount" class="form-control">
+                                <option value= '0'>Loại tài khoản</option>
+                                <option value= '1'>Mua hàng</option>
+                                <option value= '2'>Bán hàng</option>
+                            </select>
+                        </div>
+                        <div class="g-recaptcha " data-sitekey="6LdV7scUAAAAALUQJ3xEqGOkbW6YBTTbG6ayI9Wa"></div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase mt-3"
+                            type="submit">Đăng kí</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

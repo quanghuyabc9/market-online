@@ -1,0 +1,144 @@
+{{#section 'css'}}
+<!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
+{{/section}}
+
+{{#section 'javascript'}}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+{{/section}}
+
+<div class="container-fluid">
+    <div class="row bg-dark">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{>header-seller}}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            Side bar
+        </div>
+        <div class="col-10">
+            <div class="card">
+                <div class="row">
+                    <aside class="col-sm-5 border-right">
+                        <article class="gallery-wrap">
+                            <div class="img-big-wrap">
+                                <div> <a href="#"><img class="rounded mx-auto d-block"
+                                            src="../assets/photo-storage/{{avatar_main}}"></a>
+                                </div>
+                            </div> <!-- slider-product.// -->
+                            <div class="img-small-wrap">
+                                {{#each avatars}}
+                                <div class="item-gallery"> <img class="rounded mx-auto d-block"
+                                        src="../assets/photo-storage/{{this}}">
+                                </div>
+                                {{/each}}
+                            </div> <!-- slider-nav.// -->
+                        </article> <!-- gallery-wrap .end// -->
+                    </aside>
+                    <aside class="col-sm-7">
+
+                        <article class="card-body p-5">
+                            {{#each product}}
+                            <h3 class="title mb-3">{{this.Name}}</h3>
+                            {{/each}}
+                            <p class="price-detail-wrap">
+                                <span class="price h3 text-warning">
+                                    <span class="currency"></span><span class="num">{{this.CurrentPrice}}</span>
+                                </span>
+                                <span>/all products</span>
+                            </p> <!-- price-detail-wrap .// -->
+
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <dl class="param param-feature">
+                                        <dt>Seller</dt>
+                                        <dd class="mt-2 ml-3">Seller name</dd>
+                                        <dd class="mt-2 ml-3">Contact: abc@gmail.com</dd>
+                                        <dd class="mt-2 ml-3">Address: HCM City</dd>
+                                        <dd class="mt-2 ml-3">4 <i class="far fa-thumbs-up"></i> - 6 <i
+                                                class="far fa-thumbs-down"></i></dd>
+                                    </dl> <!-- item-property-hor .// -->
+                                </div> <!-- col.// -->
+                                <div class="col-sm-7">
+                                    <dl class="param param-feature">
+                                        <dt>Top 1 bidder</dt>
+                                        <dd class="mt-2 ml-3">Bidder name</dd>
+                                        <dd class="mt-2 ml-3">Contact: abc@gmail.com</dd>
+                                        <dd class="mt-2 ml-3">Address: HCM City</dd>
+                                        <dd class="mt-2 ml-3">4 <i class="far fa-thumbs-up"></i> - 6 <i
+                                                class="far fa-thumbs-down"></i></dd>
+                                    </dl> <!-- item-property-hor .// -->
+                                </div> <!-- col.// -->
+                            </div> <!-- row.// -->
+                            <hr />
+                            <dl class="param param-feature">
+                                <dt>Time</dt>
+                                {{#each product}}
+                                <dd class="mt-2 ml-3">Post: {{this.StartTime}}</dd>
+                                {{/each}}
+                                <dd class="mt-2 ml-3 text-danger">Remain: {{timeLeft}}</dd>
+                            </dl> <!-- item-property-hor     .// -->
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <dl class="param param-inline">
+                                        {{#each product}}
+                                        <dt>Quantity: {{this.Quantity}}</dt>
+                                        {{/each}}
+                                    </dl> <!-- item-property .// -->
+                                </div> <!-- col.// -->
+                            </div> <!-- row.// -->
+                            <hr>
+                            {{!-- <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
+                            <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i
+                                    class="fas fa-shopping-cart"></i> Add to cart </a> --}}
+                        </article> <!-- card-body.// -->
+                        {{/each}}
+                    </aside> <!-- col.// -->
+                </div> <!-- row.// -->
+            </div> <!-- card.// -->
+            <div class="card" style="width: 18rem;">
+                {{#each product}}
+                <div class="card-body">
+                    <h5 class="card-title">Description</h5>
+                    {{{this.FullDes}}}
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="col-1">
+            Side bar
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{>footer}}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+</div>

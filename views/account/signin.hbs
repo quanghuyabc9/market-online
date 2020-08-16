@@ -1,0 +1,64 @@
+{{#section 'javascript'}}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{{/section}}
+
+{{#section 'css'}}
+<!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="./assets/css/signin_style.css" />
+<link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
+{{/section}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <a href="/">
+            <img class="rounded mx-auto d-block mb-1" src="./assets/images/brand.png" width="40" height="40"
+              alt="brand icon">
+          </a>
+          <h5 class="card-title text-center"><b>Đăng nhập market online</b></h5>
+          {{#if showAlert}}
+          <div class="alert alert-danger text-center" role="alert">
+              Tài khoản hoặc mật khẩu không chính xác. Vui lòng thử lại!
+          </div>
+          {{/if}}
+          <form class="form-signin" action="/signin" method="post">
+            <div class="form-label-group">
+              <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required
+                autofocus>
+              <label for="inputUsername">Tài khoản</label>
+            </div>
+            <div class="form-label-group">
+              <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+                required>
+              <label for="inputPassword">Mật khẩu</label>
+            </div>
+
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Nhớ mật khẩu</label>
+            </div>
+            <div class="g-recaptcha mt-3 mb-3" data-sitekey="6LdV7scUAAAAALUQJ3xEqGOkbW6YBTTbG6ayI9Wa"></div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng nhập</button>
+            <hr class="my-4">
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
+                class="fab fa-google mr-2"></i> Đăng nhập với Google</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
+                class="fab fa-facebook-f mr-2"></i> Đăng nhập với Facebook</button>
+          </form>
+          <a class="nav-link" href="/signup">Không có tài khoản? <u>Đăng kí tại đây</u></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

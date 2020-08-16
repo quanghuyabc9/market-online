@@ -1,0 +1,8 @@
+<div class="card-header text-white bg-primary">Header</div>
+<div class="list-group">
+    {{#each cats }}
+    <a href="/cat/{{catId}}/products" class="list-group-item list-group-item-action {{#if isActive}} active {{/if}}">
+        {{catName}}
+    </a>
+    {{/each}}
+</div>

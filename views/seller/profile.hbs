@@ -1,0 +1,128 @@
+{{#section 'css'}}
+<!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{{/section}}
+
+{{#section 'javascript'}}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+{{/section}}
+
+<div class="container-fluid">
+    <div class="row bg-dark">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{>header-seller}}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6 mt-3">
+            <h5><b>Hồ sơ</b></h5>
+            <hr>
+            <form class="mt-4" role="form" action="../seller/edit-profile" method="post">
+                <div class="form-group">
+                    <label class="col-lg-3 col-form-label form-control-label">Họ tên</label>
+                    <div class="col-lg-10">
+                        <input name="fullname" class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input name="email" class="form-control" type="email" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
+                    <div class="col-lg-10">
+                        <input name="phoneNumber" class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
+                    <div class="col-lg-10">
+                        <select name="gender" class="form-control">
+                            <option value='1'>Nam</option>
+                            <option value='2'>Nữ</option>
+                            <option value='3'>Khác</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 col-form-label form-control-label">Date of birth</label>
+                    <div class="col-lg-10">
+                        <input name="dob" class="form-control" type="date" value="" placeholder="Street">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 col-form-label form-control-label">Địa chỉ</label>
+                    <div class="col-lg-10">
+                        <input name="address" class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 col-form-label form-control-label">Tên đăng nhập</label>
+                    <div class="col-lg-10">
+                        <input name="username" class="form-control" type="text" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 col-form-label form-control-label">Mật khẩu</label>
+                    <div class="col-lg-10">
+                        <input name="password" class="form-control" type="password" value="">
+                    </div>
+                    <p class="col-lg-10 text-success"><small>Để mật khẩu trống nếu không muốn thay đổi</small></p>
+                </div>
+                {{!-- <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                    <div class="col-lg-9">
+                        <input name="ConfirmPassword" class="form-control" type="password" value="">
+                    </div>
+                </div> --}}
+                <div class="form-group row">
+                     <div class="col-lg-3">
+
+                     </div>
+                    <div class="col-lg-10 text-right">
+                        <a class="btn btn-secondary" href='../seller'>Hủy</a>
+                        <input type="submit" class="btn btn-primary" value="Lưu thay đổi">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{>footer}}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+</div>

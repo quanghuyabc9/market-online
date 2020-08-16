@@ -1,0 +1,166 @@
+{{#section 'css'}}
+<!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+<link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
+{{/section}}
+
+{{#section 'javascript'}}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+{{/section}}
+
+<div class="container-fluid">
+    <div class="row bg-dark">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{>header-seller}}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+    <div class="row mt-2" style="background-color: #f5f5f5;">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{#if haveShop}}
+            <div class="ml-2 row">
+                <h1>Shop name</h1>
+            </div>
+            <div class="ml-2 row">
+                <p>Shop description</p>
+            </div>
+            <div class="ml-2 row">
+
+                <a href="#" class="d-inline btn btn-outline-dark mr-3">Chỉnh sửa thông tin cửa hàng</a>
+
+
+
+                <a href="#" class="d-inline btn btn-outline-dark mr-3">Thêm loại sản phẩm</a>
+
+                <a href="#" class="d-inline btn btn-outline-dark">Thêm sản phẩm</a>
+
+            </div>
+            <hr>
+            <div class="row mt-4">
+                <div class="col-2">
+                    <div class="list-group">
+                        {{!-- {{#each categories}} --}}
+                        {{!-- <a href="/categories/{{this.CatID}}/1"
+                            class="list-group-item list-group-item-action {{#if this.isActive}}active{{/if}}">{{this.CatName}}</a> --}}
+                        {{!-- {{/each}} --}}
+                        <a href="/categories/{{this.CatID}}/1"
+                            class="list-group-item list-group-item-action active">cat1</a>
+                        <a href="/categories/{{this.CatID}}/1" class="list-group-item list-group-item-action">cat2</a>
+                        <a href="/categories/{{this.CatID}}/1" class="list-group-item list-group-item-action">cat3</a>
+                        <a href="/categories/{{this.CatID}}/1" class="list-group-item list-group-item-action">cat4</a>
+                        <a href="/categories/{{this.CatID}}/1" class="list-group-item list-group-item-action">cat5</a>
+                        <a href="/categories/{{this.CatID}}/1" class="list-group-item list-group-item-action">cat6</a>
+                        <a href="/categories/{{this.CatID}}/1" class="list-group-item list-group-item-action">cat7</a>
+
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {{!-- {{#each productsOnPage}} --}}
+                            {{!-- <div class="col-3 mb-3">
+                                <div class="card h-100">
+                                    <img src="/images/{{this.ProID}}/main.jpg" class="card-img-top" alt="product">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{this.ProName}}</h5>
+                                        <p class="card-text">{{this.TinyDes}}</p>
+                                    </div>
+                                    <div class="card-footer bg-danger">
+                                        <small class="text-white">Price: {{this.Price}}</small></br>
+                                        <small class="text-white">Quantity: {{this.Quantity}}</small>
+                                    </div>
+                                    <a href="/products/{{this.ProID}}" class="stretched-link"></a>
+                                </div>
+                            </div> --}}
+                            {{!-- {{/each}} --}}
+                            <div class="col-3 mb-3">
+                                <div class="card h-100">
+                                    <img src="/assets/photo-storage/inputAvatar-1577979696146.jpeg"
+                                        class="card-img-top mx-auto" alt="product">
+                                    <div class="card-body">
+                                        <h6 class="card-title mx-left">Dell Inspiron N3593C i3
+                                            1005G1/4GB/256GB/15.6"FHD/Win10</h6>
+                                        {{!-- <p class="card-text">Giày Sneaker Nữ Freeship Giày Thể Thao Ulzzang Nữ U-Blai Hàn Quốc</p> --}}
+                                    </div>
+                                    <div class="card-footer bg-danger">
+                                        <small class="text-white">Giá tiền: 500.000 vnđ</small></br>
+                                        <small class="text-white">Số lượng: 10</small>
+                                    </div>
+                                </div>
+                                <a href="/products/{{this.ProID}}" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item  {{#if previous.isDisabled}}disabled{{/if}}">
+                                    <a class="page-link" href="/categories/{{previous.CatID}}/{{previous.pageNumber}}"
+                                        aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {{#each pagination}}
+                                <li class="page-item {{#if this.isActive}}active{{/if}}"><a class="page-link"
+                                        href="/categories/{{this.CatID}}/{{this.pageNumber}}">{{this.pageNumber}}</a>
+                                </li>
+                                {{/each}}
+                                {{!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li> --}}
+                                <li class="page-item {{#if next.isDisabled}}disabled{{/if}}">
+                                    <a class="page-link" href="/categories/{{next.CatID}}/{{next.pageNumber}}"
+                                        aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="row">
+                <div class="col-3">
+                    <div class="alert alert-success" role="alert">
+                        Bạn chưa có cửa hàng
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <a href="/seller/create-shop" class="btn btn-primary">Tạo cửa hàng</a>
+                </div>
+            </div>
+
+            {{/if}}
+
+        </div>
+    </div>
+    <div class="col-1">
+
+    </div>
+</div>
+<div class="row">
+    {{>footer}}
+</div>
+</div>

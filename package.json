@@ -1,0 +1,30 @@
+{
+  "name": "online-auction",
+  "version": "1.0.0",
+  "description": "Website for trading and auction",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/quanghuyabc9/online-auction.git"
+  },
+  "author": "quanghuyabc9",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-handlebars-sections": "^1.0.1",
+    "express-recaptcha": "^5.0.1",
+    "express-session": "^1.17.0",
+    "http-errors": "^1.7.3",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.0",
+    "sha.js": "^2.4.11"
+  }
+}
