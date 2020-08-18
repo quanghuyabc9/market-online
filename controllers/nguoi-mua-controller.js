@@ -121,10 +121,8 @@ router.post('/buyer/cart',(req,res,next)=>{
     mSP
     .allByProId(productId)
     .then(product=>{
-       // console.log(product);
+       // them vao gio hang
         var cartItem=req.session.cart.add(product,productId,quantity);
-        //order=cartItem;
-       //console.log(cartItem.item.item[0].name);
        var str=JSON.stringify(cartItem);
        var json =  JSON.parse(str);
        //console.log(json.item);
@@ -133,87 +131,70 @@ router.post('/buyer/cart',(req,res,next)=>{
     .catch(error=>next(error));
 });
 
+router.put('/buyer/cart',(req,res)=>{
+    var productId=req.body.id;
+    var quantity=parseInt(req.body.quantity);
+    var cartItem=req.session.cart.update(productId,quantity);
+    // console.log("item cart: ");
+    // console.log(cartItem);
+    res.json(cartItem);
 
-router.get('/seller/add-new-product', async (req, res) => {
-    if (!req.session.userID) {
-        res.redirect('/');
-    }
-    else {
-        user = await account_model.getById(req.session.userID);
-        if (user.f_Permission == 2)
-            res.render('seller/add-new-product', { layout: 'main' });
-        else
-            res.redirect('/');
-    }
-})
+});
+router.delete('/buyer/cart',(req,res)=>{
+    var productId=req.body.id;
+    req.session.cart.remove(productId);
+    res.json({
+        totalQuantity: req.session.cart.totalQuantity,
+        totalPrice: req.session.cart.totalPrice
+    });
+});
 
-router.get('/seller/create-shop', async (req, res) => {
-    if(!req.session.userID) {
-        res.redirect('/');
-    } else {
-        res.render('seller/create-shop', {layout: 'main'});
-    }
-}),
+router.delete('/buyer/cart/all',async(req,res)=>{
+    
+    const mPro= require('../models/san_pham');
+    const mBill=require('../models/phieu_dat_hangM');
+    const lengCart=req.session.cart.totalQuantity;//So luong
+    const totalPrice=req.session.cart.totalPrice;//Gia tien
+    const id=req.body.result;//id bill
+    const feeShip=1;//phi giao hang
+    const pay=1;//tong tien
+    const date=req.body.date;//Ngay lap phieu
+    const status=1;//Trang thai
+    const user=req.session.userID;
+    //Them vao data phieu dat hang
+    const row= await mBill.add(id,totalPrice,date,feeShip,status,user,pay);
+    const carts=req.session.cart.getCart();
+    // for (var i=0; i<lengCart;i++){
+    //     const count=carts.items[i].quantity;
+    //     const id_sp=carts.items[i].item[0].id_sp;
+    //     const ma=carts.items[i].item[0].cuahang;
+    //     const date=req.body.date;//Ngay lap phieu
+    //     const user=req.session.user;
+    //     console.log(user);
+    //     console.log(ma);
+    //     //var mPro=require('../models/productM');
+    //     var mUser= require('../models/accountM');
+    //     var mShop= require('../models/shopM');
 
-router.get('/seller/product-detail/:proID', async (req, res) => {
-    if (!req.session.userID) {
-        res.redirect('/');
-    }
-    else {
-        user = await account_model.getById(req.session.userID);
-        if (user.f_Permission == 2) {
-            let proID = req.param.proID;
-            let product = await product_model.getById(proID);
-            let avatars = product.Avatar.split(' ');
-            let avatar_main = avatars[0];
-            avatars.splice(0, 1);
-            let endTime = extension_func.yyyymmdd_mmddyyyy(product.EndTime);
-            let timeLeft = (new Date(endTime)).getTime() - Date.now();
-            if (timeRemain < 0) {
-                timeLeft = 'This product currently is out of auction time';
-            }
-            res.render('seller/product-detail', { layout: 'main', product, avatar_main, avatars, timeLeft });
-        }
-        else
-            res.redirect('/');
-    }
+    //     const ten=await mPro.allByProId(id_sp);
+    //     const tensp=ten[0].name;
 
+    //     const giasp=ten[0].price;
+    //     const tongtien=giasp*count;
 
-})
-
-router.post('/seller/add-new-product', multer.array('inputAvatar'), (req, res) => {
-    if (req.files.length < 3) {
-        res.render('seller/add-new-product', { layout: 'main', showAlert: true })
-    }
-    else {
-        let avatar = '';
-        for (let i = 0; i < req.files.length; i++) {
-            avatar += req.files[i].filename + ' ';
-        }
-        var startTime_milisecond = Date.now();
-        var period = req.body.AuctionPeriod;
-        var endTime_milisecond = startTime_milisecond + (period * 60 * 60 * 1000);
-        var startTime = extension_func.milisecondToDateTime(startTime_milisecond);
-        var endTime = extension_func.milisecondToDateTime(endTime_milisecond);
-        const product = {
-            Avatar: avatar,
-            Name: req.body.ProductName,
-            CurrentPrice: req.body.StartPrice,
-            StepPrice: req.body.StepPrice,
-            BuyNowPrice: req.body.BuyNowPrice,
-            StartTime: startTime,
-            EndTime: endTime,
-            TinyDes: req.body.TinyDes,
-            FullDes: req.body.FullDes,
-            CatID: req.body.Category == 'Phone' ? 1 : 2,
-            Quantity: req.body.Quantity,
-            AutoExtend: req.body.AutoExtend == 'on' ? 1 : 0,
-            SellerID: req.session.userID,
-            NumberOfBidders: 0,
-
-        }
-        var proID = product_model.add(product);
-        res.render('seller/add-new-product-successfully', { layout: 'main' });
-    }
-})
+    //     const TenNguoi=await mUser.FullNameById(user);
+    //     const tennguoi=TenNguoi[0].f_Fullname;
+    //     const DiaChi=await mUser.AddressById(user);
+    //     const diachi=DiaChi[0].f_Address;
+    //     const tenShop=await mShop.nameShopByMaShop(ma);
+    //     const shop=tenShop[0].TenCuaHang;
+    //     const ps1=await mPro.insertHistory(id_sp,count,date,user,ma);
+    //     const ps2=await mPro.insertBill(tensp,tennguoi,count,tongtien,date,diachi,shop);
+        //const ps=mPro.updateQuantity(id_sp,count);
+    //}
+    req.session.cart.empty();
+    res.sendStatus(204);
+    res.end();
+    
+});
 module.exports = router;

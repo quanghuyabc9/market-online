@@ -5,7 +5,7 @@ $(document).ready(()=>{
 function addToCart(){
     var id=$(this).data('id');
     var quantity=1;
-    confirm("Bạn có muốn thanh toán không?")
+    //confirm("Bạn có muốn thanh toán không?")
     $.ajax({
         url: '/buyer/cart',
         type: 'POST',
@@ -17,6 +17,7 @@ function addToCart(){
 }
 
 function updateCart(id,quantity){
+    //confirm("Bạn có muốn update không? id:"+id+" quan titi: "+quantity);
     if(quantity==0){
         removeCartItem(id);
     }else{
@@ -26,7 +27,7 @@ function updateCart(id,quantity){
 
 function removeCartItem(id){
     $.ajax({
-        url: '/cart',
+        url: '/buyer/cart',
         type: 'DELETE',
         data: {id},
         success: function(result){
@@ -38,7 +39,7 @@ function removeCartItem(id){
 }
 function updateCartItem(id,quantity){
     $.ajax({
-        url: '/cart',
+        url: '/buyer/cart',
         type: 'PUT',
         data: {id,quantity},
         success: function(result){
@@ -52,16 +53,18 @@ function updateCartItem(id,quantity){
 
 
 function confirmCart(){
-    if(confirm("Bạn có muốn thanh toán không?")){
+    var result=document.getElementById("inputBill").value;
+    if(confirm("Bạn có muốn thanh toán không?"+result)){
         //var order=req.session.cart;
         //console.log("cart 123");
-        var cartItem=document.getElementsByClassName('cart-item');
+        //var cartItem=document.getElementsByClassName('cart-item');
         var d=new Date();
-        var date=d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+        var date=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+        // var result=document.getElementById("inputBill").value;
         $.ajax({
-            url: '/cart/all',
+            url: '/buyer/cart/all',
             type: 'DELETE',
-            data: {date},
+            data: {date,result},
             success: function(){
                 $('#cart-badge').html('0');
                 $('#cart-body').html(`<div class="alert alert-info text-center">My cart is empty</div>`)

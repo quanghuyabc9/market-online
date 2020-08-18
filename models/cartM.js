@@ -24,7 +24,6 @@ module.exports = function Cart(oldCart) {
     };
 
     this.add = (item, id, quantity) => {
-        //console.log("123456");
         var storedItem = this.items[id];
         if (!storedItem) {
             this.items[id] = { item: item, quantity: 0, price: 0 };
@@ -55,7 +54,7 @@ module.exports = function Cart(oldCart) {
         var storedItem = this.items[id];
         if (storedItem && quantity >= 1) {
             storedItem.quantity = quantity;
-            storedItem.price = parseFloat(storedItem.item[0].price * storedItem.quantity);
+            storedItem.price = parseFloat(storedItem.item[0].gia_tien * storedItem.quantity);
             this.totalQuantity = this.getTotalQuantity();
             this.totalPrice = this.getTotalPrice();
         }

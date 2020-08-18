@@ -3,6 +3,10 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 <link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
+<link rel="stylesheet" href="../../assets/fontawesome/css/fontawesome.css" />
+<link rel="stylesheet" href="../../assets/fontawesome/css/fontawesome.min.css" />
+
+
 {{/section}}
 
 {{#section 'javascript'}}
@@ -17,7 +21,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-<script src="../../public/assets/js/item.js"></script>
+<script src="../../assets/js/jquery-3.3.1.min.js"></script>
+<script src="../../assets/js/item.js"></script>
 {{/section}}
 <section class="blog-banner-area" id="category">
 		<div class="container h-100">
@@ -26,7 +31,7 @@
 					<h1>Shopping Cart</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+              <li class="breadcrumb-item"><a href="/buyer">Trang chủ</a></li>
               <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
             </ol>
           </nav>
@@ -82,7 +87,7 @@
                                           class="input-text qty" readonly />
                                     {{#each item}}
                                       <button onclick="var result = document.getElementById('sst{{ma_so}}'); var sst = result.value; if( !isNaN( sst )) result.value++; 
-                                       updateCart({{id_sp}},result.value); return false;"
+                                       updateCart({{ma_so}},result.value); return false;"
                                           class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
                                       <button onclick="var result = document.getElementById('sst{{ma_so}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 1|| (sst == 1) &amp;&amp; confirm('Bạn muốn xóa sản phẩm này khỏi cart không?')) result.value--;  updateCart({{ma_so}},result.value); return false;"
                                           class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
@@ -100,7 +105,15 @@
                         {{/each}}
                           <tr class="bottom_button">
                               <td>
-                                  <a class="button bg-danger text-white" onclick="confirmCart()">Xác nhận</a>
+                                  {{!-- <a class="button bg-danger text-white" onclick="confirmCart()">Xác nhận</a> --}}
+                                  {{!-- <form class="form"> --}}
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputBill" class="form-control" placeholder="Nhap ma phieu" required
+                                                autofocus>
+                                            <label for="inputUsername">Nhập mã phiếu</label>
+                                         </div>
+                                         <button class="btn btn-lg btn-primary btn-block text-uppercase" onclick="confirmCart()">Xác nhận</button>
+                                    {{!-- </form> --}}
                               </td>
                               <td>
 
@@ -117,7 +130,6 @@
 
                               </td>
                               <td>
-
                               </td>
                               <td>
                                   <h4>THÀNH TIỀN</h4>
