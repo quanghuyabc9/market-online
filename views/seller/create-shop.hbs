@@ -18,7 +18,7 @@
     var quill = new Quill('#editor-container', {
         theme: 'snow'
     });
-    var form = document.querySelector('#formAddNewProduct');
+    var form = document.querySelector('#formCreateShop');
     form.onsubmit = function () {
         // Populate hidden form on submit
         var about = document.querySelector('#inputFullDes');
@@ -48,16 +48,14 @@
 
         </div>
         <div class="col-10 bg-white shadow-sm border border-success">
-            <form class="mt-4" id="formAddNewProduct" action="../seller/add-new-product" method="post"
-                enctype="multipart/form-data">
+            <form class="mt-4" id="formCreateShop" action="/seller/create-shop" method="post">
                 <legend class="mb-4">Tạo cửa hàng</legend>
                 <div class="form-row">
                     <div class="col-6">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="inputProductName">Tên cửa hàng</label>
-                                <input type="text" class="form-control" id="inputProductName" name="ProductName"
-                                    required>
+                                <label for="inputShopName">Tên cửa hàng</label>
+                                <input type="text" class="form-control" id="inputShopName" name="shopName" required>
                             </div>
                         </div>
                     </div>
@@ -67,7 +65,7 @@
                         <label>Full Description</label>
                         <div id="editor-container" class="form-control" style="height: 350px;">
                         </div>
-                        <textarea name="FullDes" style="display:none" id="inputFullDes"></textarea>
+                        <textarea name="fullDes" style="display:none" id="inputFullDes"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-info btn-lg mt-3 mb-3">Submit</button>
@@ -77,7 +75,6 @@
 
         </div>
     </div>
-
 </div>
 <div class="row">
     <div class="col-1">

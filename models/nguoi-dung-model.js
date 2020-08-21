@@ -7,7 +7,7 @@ module.exports = {
     add: async user => {
         const id = db.add(tbName, user);
         return id;
-    }, 
+    },
 
     getByUsername: async username => {
         let sql = 'SELECT * FROM ?? WHERE ?? = ?';
@@ -53,7 +53,13 @@ module.exports = {
     update: async (id, username, fullname, email, phoneNumber, gender, DOB, address) => {
         let sql = `UPDATE ${tbName}
         SET ten_dang_nhap = '${username}', ho_ten = '${fullname}', email = '${email}', So_dien_thoai = '${phoneNumber}', gioi_tinh = '${gender}', ngay_sinh = '${DOB}', dia_chi = '${address}'
-        WHERE f_ID = ${id};`
+        WHERE ma_so = ${id};`
+        const res = await db.load(sql);
+        return res;
+    },
+
+    update: async (id, shop) => {
+        let sql = `UPDATE ${tbName} SET cua_hang = ${shop} WHERE ma_so = ${id};`
         const res = await db.load(sql);
         return res;
     }

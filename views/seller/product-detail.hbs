@@ -1,13 +1,10 @@
 {{#section 'css'}}
-<!-- CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
+<link rel="stylesheet" href="/assets/fontawesome/css/all.css" />
 {{/section}}
 
 {{#section 'javascript'}}
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -33,101 +30,83 @@
     </div>
     <div class="row">
         <div class="col-1">
-            Side bar
+
         </div>
         <div class="col-10">
-            <div class="card">
-                <div class="row">
-                    <aside class="col-sm-5 border-right">
-                        <article class="gallery-wrap">
-                            <div class="img-big-wrap">
-                                <div> <a href="#"><img class="rounded mx-auto d-block"
-                                            src="../assets/photo-storage/{{avatar_main}}"></a>
-                                </div>
-                            </div> <!-- slider-product.// -->
-                            <div class="img-small-wrap">
-                                {{#each avatars}}
-                                <div class="item-gallery"> <img class="rounded mx-auto d-block"
-                                        src="../assets/photo-storage/{{this}}">
-                                </div>
-                                {{/each}}
-                            </div> <!-- slider-nav.// -->
-                        </article> <!-- gallery-wrap .end// -->
-                    </aside>
-                    <aside class="col-sm-7">
+            <div class="row mt-4 ml-1">
+                <h5>Chi tiết sản phẩm</h5>
 
-                        <article class="card-body p-5">
-                            {{#each product}}
-                            <h3 class="title mb-3">{{this.Name}}</h3>
-                            {{/each}}
-                            <p class="price-detail-wrap">
-                                <span class="price h3 text-warning">
-                                    <span class="currency"></span><span class="num">{{this.CurrentPrice}}</span>
-                                </span>
-                                <span>/all products</span>
-                            </p> <!-- price-detail-wrap .// -->
+            </div>
+            <div class="row mt-4 ml-1">
+                <a href="#" class="d-inline btn btn-outline-dark mr-3">Chỉnh sửa thông tin sản phẩm</a>
+                <button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    Xóa sản phẩm
+                </button>
 
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <dl class="param param-feature">
-                                        <dt>Seller</dt>
-                                        <dd class="mt-2 ml-3">Seller name</dd>
-                                        <dd class="mt-2 ml-3">Contact: abc@gmail.com</dd>
-                                        <dd class="mt-2 ml-3">Address: HCM City</dd>
-                                        <dd class="mt-2 ml-3">4 <i class="far fa-thumbs-up"></i> - 6 <i
-                                                class="far fa-thumbs-down"></i></dd>
-                                    </dl> <!-- item-property-hor .// -->
-                                </div> <!-- col.// -->
-                                <div class="col-sm-7">
-                                    <dl class="param param-feature">
-                                        <dt>Top 1 bidder</dt>
-                                        <dd class="mt-2 ml-3">Bidder name</dd>
-                                        <dd class="mt-2 ml-3">Contact: abc@gmail.com</dd>
-                                        <dd class="mt-2 ml-3">Address: HCM City</dd>
-                                        <dd class="mt-2 ml-3">4 <i class="far fa-thumbs-up"></i> - 6 <i
-                                                class="far fa-thumbs-down"></i></dd>
-                                    </dl> <!-- item-property-hor .// -->
-                                </div> <!-- col.// -->
-                            </div> <!-- row.// -->
-                            <hr />
-                            <dl class="param param-feature">
-                                <dt>Time</dt>
-                                {{#each product}}
-                                <dd class="mt-2 ml-3">Post: {{this.StartTime}}</dd>
-                                {{/each}}
-                                <dd class="mt-2 ml-3 text-danger">Remain: {{timeLeft}}</dd>
-                            </dl> <!-- item-property-hor     .// -->
-
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <dl class="param param-inline">
-                                        {{#each product}}
-                                        <dt>Quantity: {{this.Quantity}}</dt>
-                                        {{/each}}
-                                    </dl> <!-- item-property .// -->
-                                </div> <!-- col.// -->
-                            </div> <!-- row.// -->
-                            <hr>
-                            {{!-- <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-                            <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i
-                                    class="fas fa-shopping-cart"></i> Add to cart </a> --}}
-                        </article> <!-- card-body.// -->
-                        {{/each}}
-                    </aside> <!-- col.// -->
-                </div> <!-- row.// -->
-            </div> <!-- card.// -->
-            <div class="card" style="width: 18rem;">
-                {{#each product}}
-                <div class="card-body">
-                    <h5 class="card-title">Description</h5>
-                    {{{this.FullDes}}}
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn xóa sản phẩm này hay
+                                    không?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="mt-4" id="formDeleteProduct" action="/seller/shop/product-detail/delete-product" method="post">
+                                    <div class="form-row">
+                                        <button type="button" class="btn btn-secondary mr-2"
+                                            data-dismiss="modal">Không</button>
+                                        <button type="submit" class="btn btn-primary">Có</button>
+                                        <input type="number" class="invisible" name="proId" value="{{{product.ma_so}}}"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {{/each}}
+            </div>
+            <div class="row mt-4">
+                <div class="col-sm-5 ">
+                    <img class="rounded img-fluid" src="/assets/photo-storage/{{{product.hinh_anh}}}" />
+                </div>
+                <div class="col-sm-7">
+                    <h2 class="title mb-3">{{product.ten_san_pham}}</h2>
+                    <p class="price-detail-wrap">
+                        <span class="price h3 text-warning">
+                            <span class="currency"></span><span class="num">{{productPrice product.gia_tien}}</span>
+                        </span>
+                    </p>
+                    <div class="row ml-1 mt-4">
+                        {{#each rating}}
+                        <span class="fa fa-star mr-1" {{#if this.checked}} style="color: orange;" {{/if}}></span>
+                        {{/each}}
+                    </div>
+                    <dl class="param param-feature mt-4">
+                        <dt>Thông tin sản phẩm:</dt>
+                        <dd class="mt-2 ml-3">Cửa hàng kinh doanh: {{{shop.ten_cua_hang}}}</dd>
+                        <dd class="mt-2 ml-3">Người bán: {{{user.ten_dang_nhap}}}</dd>
+                        <dd class="mt-2 ml-3">Loại sản phẩm: {{{category.ten}}}</dd>
+                        <dd class="mt-2 ml-3 text-success">{{#if trade}} Sản phẩm này có thể trao đổi {{else}} Sản phẩm
+                            không thể trao đổi {{/if}} </dd>
+                        <dd class="mt-2 ml-3 text-danger">Số lượng: {{{product.so_luong}}}</dd>
+                    </dl>
+
+                </div>
+            </div>
+            <div class="row ml-1 mt-4">
+                <h5>Mô tả</h5>
+            </div>
+            <div class="row ml-1">
+                {{{product.mo_ta}}}
             </div>
         </div>
         <div class="col-1">
-            Side bar
+
         </div>
     </div>
     <div class="row">

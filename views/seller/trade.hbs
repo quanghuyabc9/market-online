@@ -1,12 +1,9 @@
 {{#section 'css'}}
-<!-- CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 {{/section}}
 
 {{#section 'javascript'}}
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -37,29 +34,47 @@
         <div class="col-8">
             <div class="ml-4 row">
                 <h5><b>Danh sách yêu cầu trao đổi</b></h5>
-
             </div>
             <hr>
+            {{#each tradeOrdersOnShop}}
             <div class="ml-4 row">
-                <div class="col">
-                    <div class="card mb-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img src="..." class="card-img" alt="..." style="width: 200px;">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <p class="ml-3">Ngay lap phieu: {{{this.dateCreate}}}</p>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-md-3">
+                            <img src="..." class="card-img" alt="..." style="width: 200px;">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Sản phẩm yêu cầu</h5>
+                                <h6 class="card-title">{{{this.productRequest.ten_san_pham}}}</h6>
+                                <p class="card-text">{{{this.productRequest.mo_ta}}}</p>
+                                <p class="card-text"><small class="text-muted">Số lượng: {{{this.productRequest.so_luong}}}</small></p>
+                                <p class="card-text"><small class="text-muted">Đơn giá: {{{this.productRequest.gia_tien}}}</small></p>
+                                <p class="card-text"><b>Người dùng: {{{this.userRequest.ten_dang_nhap}}}</b></p>
                             </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="..." class="card-img" alt="..." style="width: 200px;">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Sản phẩm sử dụng</h5>
+                                <h6 class="card-title">{{{this.productUse.ten_san_pham}}}</h6>
+                                <p class="card-text">{{{this.productUse.mo_ta}}}</p>
+                                <p class="card-text"><small class="text-muted">Số lượng: {{{this.productUse.so_luong}}}</small></p>
+                                <p class="card-text"><small class="text-muted">Đơn giá: {{{this.productUse.gia_tien}}}</small></p>
                             </div>
                         </div>
                     </div>
+                    <div class="row no-gutters">
+                       
+                    </div>
                 </div>
-
             </div>
+            {{/each}}
         </div>
         <div class="col-2">
 
