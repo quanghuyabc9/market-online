@@ -1,6 +1,7 @@
 const db = require('../utils/db');
 const tbName = 'san_pham';
 const mysql = require('mysql');
+const  pageSize=6;
 
 module.exports = {
     all: async () => {
@@ -77,5 +78,42 @@ module.exports = {
         const sql = `DELETE FROM ${tbName} WHERE ma_so = ${prodId}`;
         const rows = await db.load(sql);
         return rows;
-    }
+    }, 
+    allByPaging: async (page)=>{
+        let sql= `SELECT count(*) AS total FROM ${tbName}`;
+        const rs= await db.load(sql);
+        const totalPage=rs[0].total;
+        //console.log(totalPage);
+        const pageTotal=Math.floor(totalPage / pageSize)+1;
+        const offset= (page -1)* pageSize;
+        sql= `SELECT * FROM ${tbName} LIMIT ${pageSize} OFFSET ${offset}`;
+        const rows= await db.load(sql);
+        return {
+            pageTotal: pageTotal,
+            products: rows
+        };
+    },
+    allByIdPaging: async (id,page)=>{
+        let sql= `SELECT count(*) AS total FROM ${tbName} WHERE loai_san_pham=${id}`;
+        const rs= await db.load(sql);
+        const totalPage=rs[0].total;
+        const pageTotal=Math.floor(totalPage / pageSize)+1;
+        const offset= (page -1)* pageSize;
+        sql= `SELECT * FROM ${tbName} WHERE loai_san_pham= ${id} LIMIT ${pageSize} OFFSET ${offset}`;
+        const rows= await db.load(sql);
+        return {
+            pageTotal: pageTotal,
+            products: rows
+        };
+    },
+    allSearchNameProALL: async(name)=>{
+        let sql =`SELECT * FROM ${tbName} WHERE ten_san_pham LIKE '%${name}%'`;
+        const rows=await db.load(sql);
+        return rows;
+    },
+    allByProId: async i=>{
+        const sql=`SELECT *FROM ${tbName} WHERE ma_so=${i}`;
+        const rows=await db.load(sql);
+        return rows;
+    },
 };

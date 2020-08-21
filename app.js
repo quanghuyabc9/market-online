@@ -27,6 +27,14 @@ app.use(express_session({
     saveUninitialized: true
 }));
 
+let Cart=require('./models/cartM');
+app.use((req,res,next)=>{
+    var cart=new Cart(req.session.cart ? req.session.cart:{});
+    req.session.cart=cart;
+    res.locals.totalQuantity=cart.totalQuantity;
+    next();
+});
+
 app.set('view engine', '.hbs');
 
 app.use(body_parser.json());
@@ -45,6 +53,7 @@ app.use("/", express.static(__dirname + '/public'));
 
 app.use("/", nguoi_dung_controller);
 app.use("/", nguoi_ban_controller);
+app.use('/',require('./controllers/nguoi-mua-controller'));
 
 
 require('./middlewares/errors')(app);
