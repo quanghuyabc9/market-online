@@ -81,6 +81,10 @@ router.post('/signup', recaptcha.middleware.verify, async (req, res) => {
                 loai: typeAccount
             }
             const uId = await nguoi_dung_model.add(user);
+            if(typeAccount==3){
+                //them vao database nhan vien giao hang
+                const rs=await nguoi_dung_model.addShip(username,password,phoneNumber,email);
+            }
             res.redirect('/');
         }
         else

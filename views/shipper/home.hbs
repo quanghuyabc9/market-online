@@ -1,0 +1,117 @@
+{{#section 'css'}}
+<!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+<link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
+<link rel="stylesheet" href="../../assets/fontawesome/css/fontawesome.css" />
+<link rel="stylesheet" href="../../assets/fontawesome/css/fontawesome.min.css" />
+
+
+{{/section}}
+
+{{#section 'javascript'}}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+<script src="../../assets/js/jquery-3.3.1.min.js"></script>
+<script src="../../assets/js/item.js"></script>
+{{/section}}
+
+<div class="container-fluid">
+    <div class="row bg-dark">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{>header-shipper}}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+<div class="row">
+    <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            <section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Shipper</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/shipper">Trang chủ</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Giao hàng</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+    </section>
+	<!-- ================ end banner area ================= -->
+  
+  <!--================Cart Area =================-->
+  <section class="cart_area">
+      <div class="container">
+          <div class="cart_inner" id="cart-body">
+              <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col">Mã hóa dơn</th>
+                              <th scope="col">Giá</th>
+                              <th scope="col">Tổng</th>
+                              <th scope="col">Địa chỉ</th>
+                              <th scope="col">Thời gian</th>
+                              <th scope="col">Quản lý</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {{#each ps}}
+                          <tr >
+                                  
+                              <td>
+                                   {{ma_phieu}}
+                              </td>
+                              <td>
+                                  {{nhan_tien_nguoi_mua}}
+                              </td>
+                              <td>
+                                  {{tong_tien}}
+                              </td>
+                              <td>
+                                  {{dia_chi_nhan}}
+                              </td>
+                              <td>
+                                  {{ngay_nhan}}
+                              </td>
+                              <td>
+                                  <a href="/shipper/delete/{{ma_so}}" class="btn btn-sm btn-success">Cập nhật status</a>
+                              </td>
+                          </tr>
+                        {{/each}}
+                          
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </section>
+        </div>
+        <div class="col-1">
+
+        </div>
+    
+</div>
+
+
+

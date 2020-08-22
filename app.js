@@ -54,6 +54,7 @@ app.use("/", express.static(__dirname + '/public'));
 app.use("/", nguoi_dung_controller);
 app.use("/", nguoi_ban_controller);
 app.use('/',require('./controllers/nguoi-mua-controller'));
+app.use("/",require('./controllers/nguoi-van-chuyen-controller'));
 
 
 require('./middlewares/errors')(app);

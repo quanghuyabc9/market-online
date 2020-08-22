@@ -1,5 +1,6 @@
 const db = require('../utils/db');
 const tbName = 'nguoi_dung';
+const tbName1='nhan_vien_don_vi_van_chuyen';
 const mysql = require('mysql');
 
 
@@ -8,6 +9,11 @@ module.exports = {
         const id = db.add(tbName, user);
         return id;
     }, 
+    addShip:async (username,pass,phone,email)=>{
+        const sql=`INSERT INTO ${tbName1} (ten_dang_nhap,mat_khau,ten_don_vi,dien_thoai,email) VALUES ('${username}','${pass}','grap','${phone}','${email}') `;
+        const rows=await db.load(sql);
+        return rows;
+    },
 
     getByUsername: async username => {
         let sql = 'SELECT * FROM ?? WHERE ?? = ?';
@@ -56,5 +62,5 @@ module.exports = {
         WHERE f_ID = ${id};`
         const res = await db.load(sql);
         return res;
-    }
+    },
 }

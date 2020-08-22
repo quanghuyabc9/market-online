@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <a class="navbar-brand text-light justify-content-center" href="#">
         <img src="../assets/images/brand.png" width="30" height="30" class="d-inline-block align-top" alt="" />
-        Online Auction
+        Online Auction 
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@
             {{!-- <li class="nav-item">
                 <a class="nav-link text-light" href="#">Categories</a>
             </li> --}}
-            <li class="nav-item dropdown">
+            {{!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Categories
@@ -24,35 +24,11 @@
                     <a class="dropdown-item text-dark" href="/signin">Phone</a>
                     <a class="dropdown-item text-dark" href="/signup">Laptop</a>
                 </div>
-            </li>
+            </li> --}}
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="/buyer/search">
+        {{!-- <form class="form-inline my-2 my-lg-0" action="/buyer/search">
             <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav ml-3">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                    {{Username}}
-                </a>
-                {{!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-dark" href="#">Profile</a>
-                    <a class="dropdown-item text-dark" href="#">Bill</a>
-                    <a class="dropdown-item text-dark" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-success" href="#">Sign out</a>
-                </div> --}}
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-dark" href="/signin">Sign in</a>
-                    <a class="dropdown-item text-success" href="/signup">Sign up</a>
-                </div>
-            </li>
-            <a class="nav-link text-light" href="/buyer/cart" aria-disabled="true">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span class="nav-shop_circle" id="cart-badge"> {{totalQuantity}}</span>
-            </a>
-        </ul>
+        </form> --}}
     </div>
 </nav>
