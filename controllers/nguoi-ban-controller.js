@@ -6,7 +6,6 @@ const cua_hang_model = require('../models/cua-hang-model');
 const loai_san_pham_model = require('../models/loai-san-pham-model');
 const san_pham_model = require('../models/san-pham-model');
 const lich_su_ban_hang_model = require('../models/lich-su-ban-hang-model');
-const phieu_trao_doi_model = require('../models/phieu-trao-doi-model');
 const sha = require('sha.js');
 const nProducts = 8;
 const maxRating = 5;
@@ -407,32 +406,36 @@ router.post('/seller/shop/add-category', async (req, res) => {
         } else {
             user = nguoi_dung_model.getById(req.session.userID);
             if (user.loai == 2) {
-                tradeOrders = phieu_trao_doi_model.all();
-                if (tradeOrders == null) {
-                    tradeOrdersOfShop = [];
-                    res.render('seller/trade', { layout: 'main', tradeOrdersOfShop });
-                    return;
+                // tradeOrders = phieu_trao_doi_model.all();
+                // if (tradeOrders == null) {
+                //     tradeOrdersOfShop = [];
+                //     res.render('seller/trade', { layout: 'main', tradeOrdersOfShop });
+                //     return;
+                // }
+                // tradeOrdersOfShop = [];
+                // for (let i = 0; i < tradeOrders.length; i++) {
+                //     productRequest = san_pham_model.getById(tradeOrders[i].san_pham_duoc_trao_doi);
+                //     if (productRequest.cua_hang == user.cua_hang) {
+                //         userRequest = nguoi_dung_model.getById(tradeOrdes[i].nguoi_trao_doi);
+                //         productUse = san_pham_model.getById(tradeOrders[i].san_pham_trao_doi);
+                //         const d = tradeOrders[i].ngay_lap_phieu;
+                //         const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
+                //         const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d)
+                //         const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
+                //         let dateCreate = `${da}-${mo}-${ye}`;
+                //         tradeOrdersOfShop.push({
+                //             dateCreate,
+                //             userRequest,
+                //             productRequest,
+                //             productUse
+                //         })
+                //     }
+                //     res.render('seller/trade', { layout: 'main', tradeOrdersOfShop });
+                haveShop = false;
+                if(user.cua_hang != null) {
+                    haveShop = true;
                 }
-                tradeOrdersOfShop = [];
-                for (let i = 0; i < tradeOrders.length; i++) {
-                    productRequest = san_pham_model.getById(tradeOrders[i].san_pham_duoc_trao_doi);
-                    if (productRequest.cua_hang == user.cua_hang) {
-                        userRequest = nguoi_dung_model.getById(tradeOrdes[i].nguoi_trao_doi);
-                        productUse = san_pham_model.getById(tradeOrders[i].san_pham_trao_doi);
-                        const d = tradeOrders[i].ngay_lap_phieu;
-                        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
-                        const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d)
-                        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
-                        let dateCreate = `${da}-${mo}-${ye}`;
-                        tradeOrdersOfShop.push({
-                            dateCreate,
-                            userRequest,
-                            productRequest,
-                            productUse
-                        })
-                    }
-                    res.render('seller/trade', { layout: 'main', tradeOrdersOfShop });
-                }
+                res.render('seller/trade', { layout: 'main', Username: user.ten_dang_nhap, haveShop });
             } else {
                 res.redirect('/');
             }
@@ -477,7 +480,7 @@ router.post('/seller/shop/add-category', async (req, res) => {
             if (user.loai == 2) {
                 haveShop = false;
                 if(user.cua_hang != null) haveShop = true;
-                res.render('seller/statistic', {layout : "main", haveShop})
+                res.render('seller/statistic', {layout : "main", Username: user.ten_dang_nhap, haveShop})
             }
             else
                 res.redirect('/');

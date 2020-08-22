@@ -29,5 +29,13 @@ module.exports = {
         const sql = `DELETE FROM ${tbName} WHERE ma_so = ${catId}`;
         const rows = await db.load(sql);
         return rows;
-    }
+    },
+
+    all: async()=>{
+        const sql=`SELECT *FROM ${tbName}`;
+        const rows=await db.load(sql);
+        return rows;
+    },
+
+    
 }

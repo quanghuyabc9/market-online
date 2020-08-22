@@ -21,11 +21,7 @@ module.exports = {
         const rows = await db.load(sql);
         return rows;
     },
-    getTop5Finish: async () => {
-        const sql = `SELECT * FROM ${tbName} ORDER BY EndTime ASC LIMIT 5`;
-        const rows = await db.load(sql);
-        return rows;
-    },
+
     getById: async id => {
         let sql = 'SELECT * FROM ?? WHERE ?? = ?';
         const params = [tbName, 'ma_so', id];
@@ -36,10 +32,12 @@ module.exports = {
         }
         return null;
     },
+
     add: async product => {
         const id = db.add(tbName, product);
         return id;
     },
+
     getBySellerID: async sellerID => {
         let sql = 'SELECT * FROM ?? WHERE ?? = ?';
         const params = [tbName, 'SellerID', sellerID];
@@ -50,25 +48,7 @@ module.exports = {
         }
         return null;
     },
-    getTop5Bidder: async () => {
-        const sql = `SELECT * FROM ${tbName} ORDER BY Quantity DESC LIMIT 5`;
-        const rows = await db.load(sql);
-        return rows;
-    },
-    getTop5Expensive: async () => {
-        const sql = `SELECT * FROM ${tbName} ORDER BY CurrentPrice DESC LIMIT 5`;
-        const rows = await db.load(sql);
-        return rows;
-    },
-    getAuctioning: async sellerID => {
-        const sql = `
-                    SELECT * 
-                    FROM ${tbName} LEFT JOIN users ON products.HighestBidderID = users.f_ID 
-                    WHERE SellerID = ${sellerID} AND TIMEDIFF(EndTime, NOW()) > 0
-                    `;
-        const rows = await db.load(sql);
-        return rows;
-    },
+
     add: async product => {
         const id = db.add(tbName, product);
         return id;
@@ -79,6 +59,7 @@ module.exports = {
         const rows = await db.load(sql);
         return rows;
     }, 
+
     allByPaging: async (page)=>{
         let sql= `SELECT count(*) AS total FROM ${tbName}`;
         const rs= await db.load(sql);
@@ -93,6 +74,7 @@ module.exports = {
             products: rows
         };
     },
+
     allByIdPaging: async (id,page)=>{
         let sql= `SELECT count(*) AS total FROM ${tbName} WHERE loai_san_pham=${id}`;
         const rs= await db.load(sql);
@@ -106,11 +88,13 @@ module.exports = {
             products: rows
         };
     },
+
     allSearchNameProALL: async(name)=>{
         let sql =`SELECT * FROM ${tbName} WHERE ten_san_pham LIKE '%${name}%'`;
         const rows=await db.load(sql);
         return rows;
     },
+    
     allByProId: async i=>{
         const sql=`SELECT *FROM ${tbName} WHERE ma_so=${i}`;
         const rows=await db.load(sql);

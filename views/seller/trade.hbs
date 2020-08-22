@@ -32,7 +32,7 @@
 
         </div>
         <div class="col-8">
-            <div class="ml-4 row">
+            {{!-- <div class="ml-4 row">
                 <h5><b>Danh sách yêu cầu trao đổi</b></h5>
             </div>
             <hr>
@@ -75,20 +75,38 @@
                 </div>
             </div>
             {{/each}}
-        </div>
-        <div class="col-2">
+        </div> --}}
+            {{#if haveShop}}
+            <div class="alert alert-danger" role="alert">
+                Chúng tôi xin lỗi, tính năng này hiện tại chưa được hỗ trợ
+            </div>
+            {{else}}
+            <div class="row">
+                <div class="col-3">
+                    <div class="alert alert-success" role="alert">
+                        Bạn chưa có cửa hàng
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <a href="/seller/create-shop" class="btn btn-primary">Tạo cửa hàng</a>
+                </div>
+            </div>
+            {{/if}}
+            <div class="col-2">
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col-10">
+                {{>footer}}
+            </div>
+            <div class="col-1">
+
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-1">
-
-        </div>
-        <div class="col-10">
-            {{>footer}}
-        </div>
-        <div class="col-1">
-
-        </div>
-    </div>
-</div>

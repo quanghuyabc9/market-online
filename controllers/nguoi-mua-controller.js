@@ -6,8 +6,8 @@ const extension_func = require('../utils/extension-func');
 const nguoi_dung_model = require('../models/nguoi-dung-model');
 const sha = require('sha.js');
 const e = require('express');
-const mLoaiSP=require('../models/loai_san_pham');
-const mSP=require('../models/san_pham');
+const mLoaiSP=require('../models/loai-san-pham-model');
+const mSP=require('../models/san-pham-model');
 
 router.get('/buyer', async (req, res) => {
     if (!req.session.userID) {
