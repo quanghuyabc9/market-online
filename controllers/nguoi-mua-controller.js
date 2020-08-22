@@ -8,6 +8,8 @@ const sha = require('sha.js');
 const e = require('express');
 const mLoaiSP=require('../models/loai-san-pham-model');
 const mSP=require('../models/san-pham-model');
+const mBill=require('../models/phieu_dat_hangM');
+const mBillShip=require('../models/don_van_chuyenM');
 
 router.get('/buyer', async (req, res) => {
     if (!req.session.userID) {
@@ -16,22 +18,6 @@ router.get('/buyer', async (req, res) => {
     else {
         user = await nguoi_dung_model.getById(req.session.userID);
         if (user.loai == 1) {
-            //console.log(user);
-            // let products_auctioning = await product_model.getAuctioning(user.f_ID);
-            // let currentTime = Date.now();
-            // for (let i = 0; i < products_auctioning.length; i++) {
-            //     products_auctioning[i].MainAvatar = products_auctioning[i].Avatar.split(' ')[0];
-            //     products_auctioning[i].StartTimeFix = extension_func.convertDate(products_auctioning[i].StartTime);
-            //     let endTime_milisecond = products_auctioning[i].EndTime.getTime();
-            //     let timeLeft_milisecond = endTime_milisecond - currentTime;
-            //     if ((timeLeft_milisecond / (1000 * 60)) < 1 * 60) {
-            //         products_auctioning[i].TimeLeft = "" + Math.round(timeLeft_milisecond / (1000 * 60)) + " minutes left";
-            //     } else if ((timeLeft_milisecond / (1000 * 60)) < (24 * 60)) {
-            //         products_auctioning[i].TimeLeft = "" + Math.round(timeLeft_milisecond / (1000 * 60 * 60)) + " hours left";
-            //     } else {
-            //         products_auctioning[i].TimeLeft = "" + Math.round(timeLeft_milisecond / (1000 * 60 * 60 * 24)) + " days left";
-            //     }
-            // }
             const cats=await mLoaiSP.all();
             //Phan trang
     const page=parseInt(req.query.page) || 1;
@@ -113,6 +99,14 @@ router.get('/buyer/cart',async(req,res)=>{
     });
 })
 
+router.get('/buyer/history',async(req,res)=>{
+   var id=req.session.userID;
+   var rs=await  mBill.allById(id);
+    res.render('buyer/cartHistory',{
+        layout: 'main', ps:rs,
+    });
+})
+
 router.post('/buyer/cart',(req,res,next)=>{
     //console.log("oke 123");
     var productId=req.body.id;
@@ -155,43 +149,29 @@ router.delete('/buyer/cart/all',async(req,res)=>{
     const mBill=require('../models/phieu_dat_hangM');
     const lengCart=req.session.cart.totalQuantity;//So luong
     const totalPrice=req.session.cart.totalPrice;//Gia tien
-    const id=req.body.result;//id bill
+    const id=req.body.result;//id bill ma giao hang
     const feeShip=1;//phi giao hang
     const pay=1;//tong tien
     const date=req.body.date;//Ngay lap phieu
     const status=1;//Trang thai
     const user=req.session.userID;
+
     //Them vao data phieu dat hang
     const row= await mBill.add(id,totalPrice,date,feeShip,status,user,pay);
+    //them phieu 
+    const u = await nguoi_dung_model.getById(req.session.userID);
+    const address=u.dia_chi;
+    const money=totalPrice+1;
+    const nhanVien=1;
+    const r1=await mBillShip.add(address,totalPrice,money,nhanVien,date,id);
+
     const carts=req.session.cart.getCart();
-    // for (var i=0; i<lengCart;i++){
-    //     const count=carts.items[i].quantity;
-    //     const id_sp=carts.items[i].item[0].id_sp;
-    //     const ma=carts.items[i].item[0].cuahang;
-    //     const date=req.body.date;//Ngay lap phieu
-    //     const user=req.session.user;
-    //     console.log(user);
-    //     console.log(ma);
-    //     //var mPro=require('../models/productM');
-    //     var mUser= require('../models/accountM');
-    //     var mShop= require('../models/shopM');
+    for (var i=0; i<lengCart;i++){
+        const count=carts.items[i].quantity;//So luong
+        const id_sp=carts.items[i].item[0].ma_so;
+        const row1=await mBill.addDetail(count,feeShip,id,id_sp);
 
-    //     const ten=await mPro.allByProId(id_sp);
-    //     const tensp=ten[0].name;
-
-    //     const giasp=ten[0].price;
-    //     const tongtien=giasp*count;
-
-    //     const TenNguoi=await mUser.FullNameById(user);
-    //     const tennguoi=TenNguoi[0].f_Fullname;
-    //     const DiaChi=await mUser.AddressById(user);
-    //     const diachi=DiaChi[0].f_Address;
-    //     const tenShop=await mShop.nameShopByMaShop(ma);
-    //     const shop=tenShop[0].TenCuaHang;
-    //     const ps1=await mPro.insertHistory(id_sp,count,date,user,ma);
-    //     const ps2=await mPro.insertBill(tensp,tennguoi,count,tongtien,date,diachi,shop);
-        //const ps=mPro.updateQuantity(id_sp,count);
-    //}
+    }
     req.session.cart.empty();
     res.sendStatus(204);
     res.end();

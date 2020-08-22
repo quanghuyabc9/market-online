@@ -95,6 +95,12 @@ router.get("/signup", (req, res) => {
                 const uId = await nguoi_dung_model.add(user);
                 res.redirect('/');
             }
+            const uId = await nguoi_dung_model.add(user);
+            if(typeAccount==3){
+                //them vao database nhan vien giao hang
+                const rs=await nguoi_dung_model.addShip(username,password,phoneNumber,email);
+            }
+            res.redirect('/');
             else
                 res.render('account/signup', { layout: 'main', EmailExist: true });
         } else {

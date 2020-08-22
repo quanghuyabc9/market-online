@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
 <link rel="stylesheet" href="../../assets/fontawesome/css/fontawesome.css" />
 <link rel="stylesheet" href="../../assets/fontawesome/css/fontawesome.min.css" />
-
+<link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
 
 {{/section}}
 
@@ -24,44 +24,58 @@
 <script src="../../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../../assets/js/item.js"></script>
 {{/section}}
+
 <section class="blog-banner-area" id="category">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Shopping Cart</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/buyer">Trang chủ</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
+    <div class="row bg-dark">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{>header-buyer}}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Shopping Cart</h1>
+                <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/buyer">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+                        <li class="breadcrumb-item"><a href="/buyer/history">Lịch sử</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 </section>
-	<!-- ================ end banner area ================= -->
-  
-  
+<!-- ================ end banner area ================= -->
 
-  <!--================Cart Area =================-->
+
+
+<!--================Cart Area =================-->
 {{#with cart}}
-  <section class="cart_area">
-      <div class="container">
-          <div class="cart_inner" id="cart-body">
-              {{#if items.length}}
-              <div class="table-responsive">
-                  <table class="table">
-                      <thead>
-                          <tr>
-                              <th scope="col">Sản phẩm</th>
-                              <th scope="col">Giá</th>
-                              <th scope="col">Số lượng</th>
-                              <th scope="col">Tổng</th>
-                          </tr>
-                      </thead>
-                      <tbody>
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner" id="cart-body">
+            {{#if items.length}}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tổng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {{#each items}}
                         {{!-- <li class="cart-item"> --}}
+<<<<<<< HEAD
                           <tr  {{#each item}} id="item{{ma_so}}" {{/each}}>
                               <td>
                                   {{#each item}}
@@ -85,67 +99,95 @@
                                   <div class="product_count">
                                       <input type="text" name="qty" {{#each item}} id="sst{{ma_so}}"{{/each}} maxlength="12" value="{{quantity}}" title="Quantity:"
                                           class="input-text qty" readonly />
+=======
+                        <tr {{#each item}} id="item{{ma_so}}" {{/each}}>
+                            <td>
+                                {{#each item}}
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src={{hinh_anh}} alt="" style="height: 80px;">
+                                    </div>
+                                    <div class="media-body">
+                                        <p>{{ten_san_pham}}</p>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </td>
+                            <td>
+                                {{#each item}}
+                                <h5>${{gia_tien}}</h5>
+                                {{/each}}
+                            </td>
+                            <td>
+
+                                <div class="product_count">
+                                    <input type="text" name="qty" {{#each item}} id="sst{{ma_so}}" {{/each}}
+                                        maxlength="12" value="{{quantity}}" title="Quantity:" class="input-text qty"
+                                        readonly />
+>>>>>>> 578b5583264348b150e6c38e82dc4e9f475e3c11
                                     {{#each item}}
-                                      <button onclick="var result = document.getElementById('sst{{ma_so}}'); var sst = result.value; if( !isNaN( sst )) result.value++; 
-                                       updateCart({{ma_so}},result.value); return false;"
-                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                      <button onclick="var result = document.getElementById('sst{{ma_so}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 1|| (sst == 1) &amp;&amp; confirm('Bạn muốn xóa sản phẩm này khỏi cart không?')) result.value--;  updateCart({{ma_so}},result.value); return false;"
-                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                    <button onclick="var result = document.getElementById('sst{{ma_so}}'); var sst = result.value; if( !isNaN( sst )) result.value++; 
+                                       updateCart({{ma_so}},result.value); return false;" class="increase items-count"
+                                        type="button"><i class="fa fa-angle-up"></i></button>
+                                    <button
+                                        onclick="var result = document.getElementById('sst{{ma_so}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 1|| (sst == 1) &amp;&amp; confirm('Bạn muốn xóa sản phẩm này khỏi cart không?')) result.value--;  updateCart({{ma_so}},result.value); return false;"
+                                        class="reduced items-count" type="button"><i
+                                            class="fa fa-angle-down"></i></button>
                                     {{/each}}
-                                  </div>
-                                  
-                              </td>
-                              <td>
-                                  {{#each item}}
-                                  <h5 id="price{{ma_so}}">${{gia_tien}}</h5>
-                                  {{/each}}
-                              </td>
-                          </tr>
+                                </div>
+
+                            </td>
+                            <td>
+                                {{#each item}}
+                                <h5 id="price{{ma_so}}">${{gia_tien}}</h5>
+                                {{/each}}
+                            </td>
+                        </tr>
                         {{!-- </li> --}}
                         {{/each}}
-                          <tr class="bottom_button">
-                              <td>
-                                  {{!-- <a class="button bg-danger text-white" onclick="confirmCart()">Xác nhận</a> --}}
-                                  {{!-- <form class="form"> --}}
-                                        <div class="form-label-group">
-                                            <input type="text" id="inputBill" class="form-control" placeholder="Nhap ma phieu" required
-                                                autofocus>
-                                            <label for="inputUsername">Nhập mã phiếu</label>
-                                         </div>
-                                         <button class="btn btn-lg btn-primary btn-block text-uppercase" onclick="confirmCart()">Xác nhận</button>
-                                    {{!-- </form> --}}
-                              </td>
-                              <td>
+                        <tr class="bottom_button">
+                            <td>
+                                {{!-- <a class="button bg-danger text-white" onclick="confirmCart()">Xác nhận</a> --}}
+                                {{!-- <form class="form"> --}}
+                                <div class="form-label-group">
+                                    <input type="text" id="inputBill" class="form-control" placeholder="Nhap ma phieu"
+                                        required autofocus>
+                                    <label for="inputUsername">Nhập mã phiếu</label>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                    onclick="confirmCart()">Xác nhận</button>
+                                {{!-- </form> --}}
+                            </td>
+                            <td>
 
-                              </td>
-                              <td>
+                            </td>
+                            <td>
 
-                              </td>
-                              <td>
-                                  
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
+                            </td>
+                            <td>
 
-                              </td>
-                              <td>
-                              </td>
-                              <td>
-                                  <h4>THÀNH TIỀN</h4>
-                              </td>
-                              <td>
-                                  <h5 id="totalPrice">${{totalPrice}}</h5>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-                  {{else}}
-                    <div class="alert alert-info text-center">My cart is empty</div>
-                  {{/if}}
-              </div>
-          </div>
-      </div>
-  </section>
-  {{/with}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
 
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <h4>THÀNH TIỀN</h4>
+                            </td>
+                            <td>
+                                <h5 id="totalPrice">${{totalPrice}}</h5>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{else}}
+                <div class="alert alert-info text-center">My cart is empty</div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
+{{/with}}
