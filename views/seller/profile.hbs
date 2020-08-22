@@ -1,12 +1,9 @@
 {{#section 'css'}}
-<!-- CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 {{/section}}
 
 {{#section 'javascript'}}
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -41,48 +38,48 @@
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Họ tên</label>
                     <div class="col-lg-10">
-                        <input name="fullname" class="form-control" type="text" value="">
+                        <input name="fullname" class="form-control" type="text" value="{{user.ho_ten}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                     <div class="col-lg-10">
-                        <input name="email" class="form-control" type="email" value="">
+                        <input name="email" class="form-control" type="email" value="{{user.email}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
                     <div class="col-lg-10">
-                        <input name="phoneNumber" class="form-control" type="text" value="">
+                        <input name="phoneNumber" class="form-control" type="text" value="{{user.so_dien_thoai}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
                     <div class="col-lg-10">
-                        <select name="gender" class="form-control">
+                        <select name="gender" class="form-control" value="{{user.gioi_tinh}}">
                             <option value='1'>Nam</option>
                             <option value='2'>Nữ</option>
                             <option value='3'>Khác</option>
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Date of birth</label>
                     <div class="col-lg-10">
-                        <input name="dob" class="form-control" type="date" value="" placeholder="Street">
+                        <input name="dob" class="form-control" type="date" value="{{user.ngay_sinh_view}}"
+                            placeholder="Street">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Địa chỉ</label>
                     <div class="col-lg-10">
-                        <input name="address" class="form-control" type="text" value="">
+                        <input name="address" class="form-control" type="text" value="{{user.dia_chi}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Tên đăng nhập</label>
                     <div class="col-lg-10">
-                        <input name="username" class="form-control" type="text" value="">
+                        <input name="username" class="form-control" type="text" value="{{user.ten_dang_nhap}}">
                     </div>
                 </div>
 
@@ -93,16 +90,10 @@
                     </div>
                     <p class="col-lg-10 text-success"><small>Để mật khẩu trống nếu không muốn thay đổi</small></p>
                 </div>
-                {{!-- <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                    <div class="col-lg-9">
-                        <input name="ConfirmPassword" class="form-control" type="password" value="">
-                    </div>
-                </div> --}}
                 <div class="form-group row">
-                     <div class="col-lg-3">
+                    <div class="col-lg-3">
 
-                     </div>
+                    </div>
                     <div class="col-lg-10 text-right">
                         <a class="btn btn-secondary" href='../seller'>Hủy</a>
                         <input type="submit" class="btn btn-primary" value="Lưu thay đổi">

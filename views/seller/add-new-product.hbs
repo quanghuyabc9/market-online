@@ -1,5 +1,4 @@
 {{#section 'css'}}
-<!-- CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 <link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
@@ -7,11 +6,6 @@
 {{/section}}
 
 {{#section 'javascript'}}
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-{{!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script> --}}
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -51,94 +45,60 @@
     </div>
     <div class="row mt-3">
         <div class="col-1">
-            
+
         </div>
         <div class="col-10 bg-white shadow-sm border border-success">
-            <form class="mt-4" id="formAddNewProduct" action="../seller/add-new-product" method="post"
+            <form class="mt-4" id="formAddNewProduct" action="/seller/shop/add-new-product" method="post"
                 enctype="multipart/form-data">
-                <legend class="mb-4">Add new product</legend>
-                {{#if showAlert}}
-                <div class="alert alert-warning" role="alert">
-                    Please chose at least 3 images for product
-                </div>
-                {{/if}}
+                <legend class="mb-4">Thêm sản phẩm mới</legend>
                 <div class="form-row">
                     <div class="col-6">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="inputProductName">Product Name</label>
-                                <input type="text" class="form-control" id="inputProductName" name="ProductName"
-                                    required>
+                                <label for="inputProductName">Tên sản phẩm</label>
+                                <input type="text" class="form-control" id="inputProductName" name="productName" required>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="inputStartPrice">Start Price</label>
-                                <input type="number" class="form-control" id="inputStartPrice" name="StartPrice"
-                                    placeholder="đ" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputStepPrice">Step Price</label>
-                                <input type="number" class="form-control" id="inputStepPrice" placeholder="đ"
-                                    name="StepPrice" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputByNowPrice">By Now Price</label>
-                                <input type="number" class="form-control" id="inputByNowPrice" placeholder="đ"
-                                    name="BuyNowPrice">
+                            <div class="form-group col-md-12">
+                                <label for="inputQuantity">Số lượng</label>
+                                <input type="number" class="form-control" id="inputQuantity" name="quantity" required>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="inputCategory">Category</label>
-                                <select id="inputCategory" class="form-control" name="Category">
-                                    <option>Nike</option>
-                                    <option>Air jordan</option>
-                                    <option>adidas</option>
-                                    <option>New Balance</option>
-                                    <option>Under Armour</option>
-                                    <option>Asics</option>
-                                    <option>Puma</option>
-                                    <option>Reebok</option>
+                            <div class="form-group col-md-12">
+                                <label for="inputPrice">Đơn giá</label>
+                                <input type="number" class="form-control" id="inputPrice" placeholder="vnd" name="price" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputCategory">Loại sản phẩm</label>
+                                <select id="inputCategory" class="form-control" name="category">
+                                    {{#each categories}}
+                                    <option value="{{{this.ma_so}}}">{{this.ten}}</option>
+                                    {{/each}}
                                 </select>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputQuantity">Quantity</label>
-                                <input type="number" class="form-control" id="inputQuantity" name="Quantity" required>
-                            </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputAuctionPeriod">Auction Period</label>
-                                <input type="number" class="form-control" id="inputAuctionPeriod" name="AuctionPeriod"
-                                    min="1" placeholder="hours - example: 5 hours" required>
-                            </div>
-                        </div>
-                        <div class="input-group mb-2 mt-2 px-2 py-2 rounded-pill shadow-sm border border-success">
-                            <input id="inputAvatar" type="file" class="form-control border-0" name="inputAvatar"
-                                multiple>
-                            <label for="inputAvatar" class="font-weight-light text-muted mt-2">Upload image for
-                                product</label>
+                        <div class="input-group mb-2 mt-3 px-2 py-2 rounded-pill shadow-sm border border-success">
+                            <input id="inputAvatar" type="file" class="form-control border-0" name="inputAvatar"/>
+                            <label for="inputAvatar" class="font-weight-light text-muted mt-2">Hình ảnh cho sản
+                                phẩm</label>
                         </div>
 
                         <div class="form-group form-check mt-4">
-                            <input type="checkbox" class="form-check-input" id="inputAutoExtend" name="AutoExtend">
-                            <label class="form-check-label" for="inputAutoExtend">Auto extend</label>
+                            <input type="checkbox" class="form-check-input" id="inputTrade" name="trade">
+                            <label class="form-check-label" for="inputTrade">Có thể trao đổi</label>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="inputTinyDes">Tiny Description</label>
-                                <input type="text" class="form-control" id="inputTinyDes" name="TinyDes">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label>Full Description</label>
+                                <label>Mô tả</label>
                                 <div id="editor-container" class="form-control" style="height: 350px;">
                                 </div>
-                                <textarea name="FullDes" style="display:none" id="inputFullDes"></textarea>
+                                <textarea name="fullDes" style="display:none" id="inputFullDes"></textarea>
                             </div>
                         </div>
                     </div>
@@ -147,7 +107,7 @@
             </form>
         </div>
         <div class="col-1">
-           
+
         </div>
     </div>
 

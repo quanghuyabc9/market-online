@@ -1,13 +1,10 @@
 {{#section 'css'}}
-<!-- CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-<link rel="stylesheet" href="./assets/fontawesome/css/all.css" />
+<link rel="stylesheet" href="/assets/fontawesome/css/all.css" />
 {{/section}}
 
 {{#section 'javascript'}}
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -38,22 +35,22 @@
         <div class="col-2">
             <div class="list-group mt-4">
                 <div class="card text-center mx-auto" style="width: 7rem;">
-                    <img src="../assets/images/icon-shop.png" style="width: 3rem;" class="card-img-top mx-auto mt-3"
+                    <img src="/assets/images/icon-shop.png" style="width: 3rem;" class="card-img-top mx-auto mt-3"
                         alt="...">
                     <p class="card-text">Cửa hàng</p>
-                    <a href="seller/shop" class="stretched-link"></a>
+                    <a href="/seller/shop" class="stretched-link"></a>
                 </div>
                 <div class="card text-center mx-auto mt-2" style="width: 7rem;">
-                    <img src="../assets/images/icon-trade.png" style="width: 3rem;" class="card-img-top mx-auto mt-3"
+                    <img src="/assets/images/icon-trade.png" style="width: 3rem;" class="card-img-top mx-auto mt-3"
                         alt="...">
                     <p class="card-text">Trao đổi</p>
-                    <a href="seller/trade" class="stretched-link"></a>
+                    <a href="/seller/trade" class="stretched-link"></a>
                 </div>
                 <div class="card text-center mx-auto mt-2" style="width: 7rem;">
-                    <img src="../assets/images/icon-statistic.png" style="width: 3rem;"
+                    <img src="/assets/images/icon-statistic.png" style="width: 3rem;"
                         class="card-img-top mx-auto mt-3" alt="...">
                     <p class="card-text">Thống kê</p>
-                    <a href="seller/statistic" class="stretched-link"></a>
+                    <a href="/seller/statistic" class="stretched-link"></a>
                 </div>
             </div>
         </div>
@@ -66,13 +63,13 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <img class="d-block img-fluid" src="../assets/images/seller_home_wall1.png" alt="First slide">
+                        <img class="d-block img-fluid" src="/assets/images/seller_home_wall1.png" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block img-fluid" src="../assets/images/seller_home_wall2.png" alt="Second slide">
+                        <img class="d-block img-fluid" src="/assets/images/seller_home_wall2.png" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block img-fluid" src="../assets/images/seller_home_wall3.png" alt="Third slide">
+                        <img class="d-block img-fluid" src="/assets/images/seller_home_wall3.png" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -108,27 +105,45 @@
                     aria-labelledby="products-auctioning-tab">
                     {{#if haveShop}}
                     <div class="row">
+                        {{#each productsOnPage}}
                         <div class="col-lg-3 col-md-6 mb-4 mt-4">
                             <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="../assets/photo-storage/{{this.MainAvatar}}"
-                                        alt=""></a>
+                                <img src="/assets/photo-storage/inputAvatar-1577979696146.jpeg"
+                                    class="card-img-top mx-auto" alt="product">
                                 <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">{{this.Name}}</a>
-                                    </h4>
-                                    <p class="h5 text-warning">{{this.CurrentPrice}} đ</p>
-                                    <p class="card-text"><b>Highest bidders:</b> {{this.f_Username}}</p>
-                                    <p class="card-text"><b>Buy now price:</b> {{this.BuyNowPrice}} đ</p>
-                                    <p class="card-text"><b>Start time:</b> {{this.StartTimeFix}}</p>
-                                    <p class="card-text"><b>Number of bidders: </b>{{this.NumberOfBidders}}</p>
-                                    <p class="card-text">{{this.TinyDes}}</p>
-
+                                    <h6 class="card-title mx-left">{{this.ten_san_pham}}</h6>
                                 </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">{{this.TimeLeft}}</small>
+                                <div class="card-footer bg-danger">
+                                    <small class="text-white">Giá tiền: {{this.gia_tien_fix}}</small></br>
+                                    <small class="text-white">Số lượng: {{this.so_luong}}</small>
                                 </div>
                             </div>
+                            <a href="/seller/products-detail/{{this.ma_so}}" class="stretched-link"></a>
                         </div>
+                        {{/each}}
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item {{#if previous.isDisabled}}disabled{{/if}}">
+                                    <a class="page-link" href="/seller/{{previous.pageNumber}}"
+                                        aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {{#each pagination}}
+                                <li class="page-item {{#if this.isActive}}active{{/if}}"><a class="page-link"
+                                        href="/seller/{{this.pageNumber}}">{{this.pageNumber}}</a>
+                                </li>
+                                {{/each}}
+                                <li class="page-item {{#if next.isDisabled}}disabled{{/if}}">
+                                    <a class="page-link" href="/seller/{{next.pageNumber}}"
+                                        aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                     {{else}}
                     <div class="mt-4 alert alert-danger" role="alert">
@@ -139,7 +154,26 @@
                 <div class="tab-pane fade" id="nav-history" role="tabpanel" aria-labelledby="products-win-bidders-tab">
                     {{#if haveShop}}
                     <div class="row">
-                      
+                        <table class="table mt-4 ml-4 mr-4 table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ngày bán</th>
+                                    <th scope="col">Sản phẩm</th>
+                                    <th scope="col">Số lượng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each sellHistories}}
+                                <tr>
+                                    <th scope="row">{{this.STT}}</th>
+                                    <td>{{this.ngay_ban}}</td>
+                                    <td>{{this.san_pham_du_lieu.ten_san_pham}}</td>
+                                    <td>{{this.so_luong}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
                     </div>
                     {{else}}
                     <div class="mt-4 alert alert-danger" role="alert">
