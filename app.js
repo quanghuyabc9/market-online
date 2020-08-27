@@ -27,13 +27,13 @@ app.use(express_session({
     saveUninitialized: true
 }));
 
-let Cart=require('./models/cartM');
-app.use((req,res,next)=>{
-    var cart=new Cart(req.session.cart ? req.session.cart:{});
-    req.session.cart=cart;
-    res.locals.totalQuantity=cart.totalQuantity;
-    next();
-});
+// let Cart=require('./models/gioh');
+// app.use((req,res,next)=>{
+//     var cart=new Cart(req.session.cart ? req.session.cart:{});
+//     req.session.cart=cart;
+//     res.locals.totalQuantity=cart.totalQuantity;
+//     next();
+// });
 
 app.set('view engine', '.hbs');
 

@@ -4,11 +4,11 @@ const mysql = require('mysql');
 
 
 module.exports = {
-    add:async (diachi,tien,tongtien,nhanvien,ngay,id)=>{
-        const sql=`INSERT INTO ${tbName} (dia_chi_nhan,nhan_tien_nguoi_mua,tong_tien,nhan_vien,ngay_nhan,ma_phieu) VALUES ('${diachi}',${tien},${tongtien},${nhanvien},'${ngay}',${id}) `;
-        const rows=await db.load(sql);
-        return rows;
+    add: async shippingBill => {
+        const id = db.add(tbName, shippingBill);
+        return id;
     },
+
     all: async()=>{
         const sql=`SELECT *FROM ${tbName}`;
         const rows=await db.load(sql);

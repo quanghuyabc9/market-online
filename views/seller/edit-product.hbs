@@ -18,7 +18,9 @@
     var quill = new Quill('#editor-container', {
         theme: 'snow'
     });
-    var form = document.querySelector('#formAddNewProduct');
+    var curFullDes = document.querySelector('#inputFullDes').value;
+    $("#editor-container .ql-editor").html(curFullDes);
+    var form = document.querySelector('#formEditProduct');
     form.onsubmit = function () {
         // Populate hidden form on submit
         var about = document.querySelector('#inputFullDes');
@@ -48,27 +50,32 @@
 
         </div>
         <div class="col-10 bg-white shadow-sm border border-success">
-            <form class="mt-4" id="formAddNewProduct" action="/seller/shop/add-new-product" method="post"
+            <form class="mt-4" id="formEditProduct" action="/seller/shop/edit-product" method="post"
                 enctype="multipart/form-data">
-                <legend class="mb-4">Thêm sản phẩm mới</legend>
+                <legend class="mb-4">Chỉnh sửa thông tin sản phẩm</legend>
                 <div class="form-row">
                     <div class="col-6">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="inputProductName">Tên sản phẩm</label>
-                                <input type="text" class="form-control" id="inputProductName" name="productName" required>
+                                <input type="text" class="form-control" id="inputProductName" name="productName"
+                                    value="{{{product.ten_san_pham}}}" required>
+                                <input type="number" class="form-control d-none" id="inputProId" name="proId"
+                                    value="{{{product.ma_so}}}" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="inputQuantity">Số lượng</label>
-                                <input type="number" class="form-control" id="inputQuantity" name="quantity" required>
+                                <input type="number" class="form-control" id="inputQuantity" name="quantity"
+                                    value="{{{product.so_luong}}}" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="inputPrice">Đơn giá</label>
-                                <input type="number" class="form-control" id="inputPrice" placeholder="vnd" name="price" required>
+                                <input type="number" class="form-control" id="inputPrice" placeholder="vnd" name="price"
+                                    value="{{{product.gia_tien}}}" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -76,13 +83,14 @@
                                 <label for="inputCategory">Loại sản phẩm</label>
                                 <select id="inputCategory" class="form-control" name="category">
                                     {{#each categories}}
-                                    <option value="{{{this.ma_so}}}">{{this.ten}}</option>
+                                    <option value="{{{this.ma_so}}}" {{#if this.selected}}selected="selected" {{/if}}>
+                                        {{this.ten}}</option>
                                     {{/each}}
                                 </select>
                             </div>
                         </div>
                         <div class="input-group mb-2 mt-3 px-2 py-2 rounded-pill shadow-sm border border-success">
-                            <input id="inputAvatar" type="file" class="form-control border-0" name="inputAvatar"/>
+                            <input id="inputAvatar" type="file" class="form-control border-0" name="inputAvatar" />
                             <label for="inputAvatar" class="font-weight-light text-muted mt-2">Hình ảnh cho sản
                                 phẩm</label>
                         </div>
@@ -93,7 +101,8 @@
                                 <label>Mô tả</label>
                                 <div id="editor-container" class="form-control" style="height: 350px;">
                                 </div>
-                                <textarea name="fullDes" style="display:none" id="inputFullDes"></textarea>
+                                <textarea name="fullDes" style="display:none" id="inputFullDes"
+                                    >{{{product.mo_ta}}}</textarea>
                             </div>
                         </div>
                     </div>

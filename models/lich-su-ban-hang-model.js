@@ -19,5 +19,10 @@ module.exports = {
         const sql = `SELECT * FROM ${tbName} WHERE cua_hang = ${shopId}`;
         const rows = await db.load(sql);
         return rows;
-    }
+    },
+
+    add: async sellHistories => {
+        const id = db.add(tbName, sellHistories);
+        return id;
+    },
 }

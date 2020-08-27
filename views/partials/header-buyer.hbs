@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand text-light justify-content-center" href="#">
-        <img src="../assets/images/brand.png" width="30" height="30" class="d-inline-block align-top" alt="" />
-        Online Auction
+    <a class="navbar-brand text-light justify-content-center" href="/buyer">
+        <img src="/assets/images/brand.png" width="30" height="30" class="d-inline-block align-top" alt="" />
+        Market Online
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,8 +9,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link text-light" href="/buyer">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/buyer">Home</a>
             </li>
             {{!-- <li class="nav-item">
                 <a class="nav-link text-light" href="#">Categories</a>
@@ -18,16 +18,20 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Categories
+                    Loại sản phẩm
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-dark" href="/signin">Phone</a>
-                    <a class="dropdown-item text-dark" href="/signup">Laptop</a>
+                    {{#each categories}}
+                    <a class="dropdown-item text-dark" href="/signin">{{{this.ten}}}</a>
+                    {{/each}}
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/buyer/histories">Lịch sử mua hàng</a>
+            </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="/buyer/search">
-            <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/buyer/search" method = "post">
+            <input class="form-control mr-sm-2" name="keyWord" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav ml-3">
@@ -37,21 +41,15 @@
                     <i class="fa fa-user-circle" aria-hidden="true"></i>
                     {{Username}}
                 </a>
-                {{!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-dark" href="#">Profile</a>
-                    <a class="dropdown-item text-dark" href="#">Bill</a>
-                    <a class="dropdown-item text-dark" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-success" href="#">Sign out</a>
-                </div> --}}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-dark" href="#">Profile</a>
-                    <a class="dropdown-item text-success" href="/signin">Signout</a>
+                    <a class="dropdown-item text-dark" href="/buyer/profile">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-success" href="/signin">Sign out</a>
                 </div>
             </li>
             <a class="nav-link text-light" href="/buyer/cart" aria-disabled="true">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span class="nav-shop_circle" id="cart-badge"> {{totalQuantity}}</span>
+                <span class="nav-shop_circle" id="cart-badge"> {{cart.tong_so_san_pham}}</span>
             </a>
         </ul>
     </div>

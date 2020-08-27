@@ -21,7 +21,7 @@
 
         </div>
         <div class="col-10">
-            {{>header-seller}}
+            {{>header-buyer}}
         </div>
         <div class="col-1">
 
@@ -34,7 +34,7 @@
         <div class="col-6 mt-3">
             <h5><b>Hồ sơ</b></h5>
             <hr>
-            <form class="mt-4" role="form" action="/seller/profile" method="post">
+            <form class="mt-4" role="form" action="/buyer/profile" method="post">
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Họ tên</label>
                     <div class="col-lg-10">
@@ -56,7 +56,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
                     <div class="col-lg-10">
-                           <select name="gender" class="form-control">
+                        <select name="gender" class="form-control">
                             <option {{#if user.isMale}}selected="selected"{{/if}} value='1'>Nam</option>
                             <option {{#if user.isFemale}}selected="selected"{{/if}} value='2'>Nữ</option>
                             <option {{#if user.isOther}}selected="selected"{{/if}} value='3'>Khác</option>
@@ -95,7 +95,7 @@
 
                     </div>
                     <div class="col-lg-10 text-right">
-                        <a class="btn btn-secondary" href='../seller'>Hủy</a>
+                        <a class="btn btn-secondary" href='/'>Hủy</a>
                         <input type="submit" class="btn btn-primary" value="Lưu thay đổi">
                     </div>
                 </div>

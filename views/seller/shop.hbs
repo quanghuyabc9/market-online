@@ -63,10 +63,8 @@
                 <div id="editShopModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
                             <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <form class="mt-4" id="formEditShop" action="/seller/shop/edit-shop" method="post">
                                     <legend class="mb-4">Chỉnh sửa thông tin cửa hàng</legend>
                                     <div class="form-row">
@@ -100,10 +98,8 @@
                 <div id="addCategoryModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
                             <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <form class="mt-4" id="formAddCategory" action="/seller/shop/add-category"
                                     method="post">
                                     <legend class="mb-4">Thêm loại sản phẩm</legend>
@@ -128,14 +124,6 @@
             </div>
             <hr>
             <div class="row mt-4">
-                <div class="col-1">
-                    <div class="list-group">
-                        {{#each categories}}
-                        <a href="/seller/shop/update/delete-category/{{{this.ma_so}}}" class="list-group-item list-group-item-action"><i
-                                class="fas fa-trash-alt"></i></a>
-                        {{/each}}
-                    </div>
-                </div>
                 <div class="col-2">
                     <div class="list-group">
                         {{#each categories}}
@@ -144,14 +132,14 @@
                         {{/each}}
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-10">
                     <div class="container-fluid">
                         <div class="row">
                             {{#each productsOnPage}}
                             <div class="col-3 mb-3">
                                 <div class="card h-100">
-                                    <img src="/assets/photo-storage/inputAvatar-1577979696146.jpeg"
-                                        class="card-img-top mx-auto" alt="product">
+                                    <img src="/assets/photo-storage/{{{this.hinh_anh}}}" class="card-img-top mx-auto"
+                                        alt="product">
                                     <div class="card-body">
                                         <h6 class="card-title mx-left">{{this.ten_san_pham}}</h6>
                                     </div>

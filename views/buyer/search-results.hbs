@@ -1,0 +1,92 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+<link rel="stylesheet" href="/assets/fontawesome/css/all.css" />
+{{/section}}
+
+{{#section 'javascript'}}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+{{/section}}
+
+<div class="container-fluid">
+    <div class="row bg-dark">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            {{>header-buyer}}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+    <div class="row mt-2" style="background-color: #f5f5f5;">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            <div class="row ml-3">
+                <h5>Kết quả tìm kiếm</h5>
+            </div>
+            <div class="mt-4 container-fluid">
+                <div class="row">
+                    {{#each productsOnPage}}
+                    <div class="col-3 mb-3">
+                        <div class="card h-100">
+                            <img src="/assets/photo-storage/{{{this.hinh_anh}}}" class="card-img-top mx-auto"
+                                alt="product">
+                            <div class="card-body">
+                                <h6 class="card-title mx-left">{{this.ten_san_pham}}</h6>
+                            </div>
+                            <div class="card-footer bg-danger">
+                                <small class="text-white">Giá tiền: {{productPrice this.gia_tien}}</small></br>
+                                <small class="text-white">Số lượng: {{this.so_luong}}</small>
+                            </div>
+                        </div>
+                        <a href="/buyer/view/product-detail/{{{this.ma_so}}}" class="stretched-link"></a>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item  {{#if previous.isDisabled}}disabled{{/if}}">
+                            <a class="page-link" href="/buyer/view/search/{{previous.keyWord}}/{{previous.pageNumber}}"
+                                aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {{#each pagination}}
+                        <li class="page-item {{#if this.isActive}}active{{/if}}"><a class="page-link"
+                                href="/buyer/view/search/{{this.keyWord}}/{{this.pageNumber}}">{{this.pageNumber}}</a>
+                        </li>
+                        {{/each}}
+                        <li class="page-item {{#if next.isDisabled}}disabled{{/if}}">
+                            <a class="page-link" href="/buyer/view/search/{{next.keyWord}}/{{next.pageNumber}}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+    <div class="col-1">
+
+    </div>
+</div>
+<div class="row">
+    {{>footer}}
+</div>
+</div>

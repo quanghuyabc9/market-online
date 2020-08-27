@@ -47,8 +47,8 @@
                     <a href="/seller/trade" class="stretched-link"></a>
                 </div>
                 <div class="card text-center mx-auto mt-2" style="width: 7rem;">
-                    <img src="/assets/images/icon-statistic.png" style="width: 3rem;"
-                        class="card-img-top mx-auto mt-3" alt="...">
+                    <img src="/assets/images/icon-statistic.png" style="width: 3rem;" class="card-img-top mx-auto mt-3"
+                        alt="...">
                     <p class="card-text">Thống kê</p>
                     <a href="/seller/statistic" class="stretched-link"></a>
                 </div>
@@ -104,21 +104,21 @@
                 <div class="tab-pane fade show active" id="nav-your-products" role="tabpanel"
                     aria-labelledby="products-auctioning-tab">
                     {{#if haveShop}}
-                    <div class="row">
+                    <div class="row mt-4">
                         {{#each productsOnPage}}
-                        <div class="col-lg-3 col-md-6 mb-4 mt-4">
+                        <div class="col-3 mb-3">
                             <div class="card h-100">
-                                <img src="/assets/photo-storage/inputAvatar-1577979696146.jpeg"
-                                    class="card-img-top mx-auto" alt="product">
+                                <img src="/assets/photo-storage/{{{this.hinh_anh}}}" class="card-img-top mx-auto"
+                                    alt="product">
                                 <div class="card-body">
                                     <h6 class="card-title mx-left">{{this.ten_san_pham}}</h6>
                                 </div>
                                 <div class="card-footer bg-danger">
-                                    <small class="text-white">Giá tiền: {{this.gia_tien_fix}}</small></br>
+                                    <small class="text-white">Giá tiền: {{productPrice this.gia_tien}}</small></br>
                                     <small class="text-white">Số lượng: {{this.so_luong}}</small>
                                 </div>
                             </div>
-                            <a href="/seller/products-detail/{{this.ma_so}}" class="stretched-link"></a>
+                            <a href="/seller/product-detail/{{{this.ma_so}}}" class="stretched-link"></a>
                         </div>
                         {{/each}}
                     </div>
@@ -126,19 +126,17 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <li class="page-item {{#if previous.isDisabled}}disabled{{/if}}">
-                                    <a class="page-link" href="/seller/{{previous.pageNumber}}"
-                                        aria-label="Previous">
+                                    <a class="page-link" href="/seller/page/{{previous.pageNumber}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                                 {{#each pagination}}
                                 <li class="page-item {{#if this.isActive}}active{{/if}}"><a class="page-link"
-                                        href="/seller/{{this.pageNumber}}">{{this.pageNumber}}</a>
+                                        href="/seller/page/{{this.pageNumber}}">{{this.pageNumber}}</a>
                                 </li>
                                 {{/each}}
                                 <li class="page-item {{#if next.isDisabled}}disabled{{/if}}">
-                                    <a class="page-link" href="/seller/{{next.pageNumber}}"
-                                        aria-label="Next">
+                                    <a class="page-link" href="/seller/page/{{next.pageNumber}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
@@ -167,7 +165,7 @@
                                 {{#each sellHistories}}
                                 <tr>
                                     <th scope="row">{{this.STT}}</th>
-                                    <td>{{this.ngay_ban}}</td>
+                                    <td>{{this.ngay_ban_view}}</td>
                                     <td>{{this.san_pham_du_lieu.ten_san_pham}}</td>
                                     <td>{{this.so_luong}}</td>
                                 </tr>

@@ -1,13 +1,13 @@
 const db = require('../utils/db');
-const tbName = 'cua_hang';
+const tbName = 'thanh_toan';
 const mysql = require('mysql');
 
 
 module.exports = {
-    add: async shop => {
-        const id = db.add(tbName, shop);
+    add: async payment => {
+        const id = db.add(tbName, payment);
         return id;
-    }, 
+    },
 
     getById: async id => {
         let sql = 'SELECT * FROM ?? WHERE ?? = ?';
@@ -19,10 +19,4 @@ module.exports = {
         }
         return null;
     },
-
-    update: async (id, shopName, fullDes) => {
-        let sql = `UPDATE ${tbName} SET ten_cua_hang = '${shopName}', mo_ta = '${fullDes}' WHERE ma_so = ${id};`
-        const res = await db.load(sql);
-        return res;
-    }
 }

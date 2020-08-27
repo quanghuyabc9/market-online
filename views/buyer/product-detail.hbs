@@ -22,7 +22,7 @@
 
         </div>
         <div class="col-10">
-            {{>header-seller}}
+            {{>header-buyer}}
         </div>
         <div class="col-1">
 
@@ -36,40 +36,7 @@
             <div class="row mt-4 ml-1">
                 <h5>Chi tiết sản phẩm</h5>
             </div>
-            <div class="row mt-4 ml-1">
-                <a href="/seller/shop/edit-product/proId/{{{product.ma_so}}}" class="d-inline btn btn-outline-dark mr-3">Chỉnh sửa thông tin sản phẩm</a>
-                <button type="button" class="btn btn-outline-dark" data-toggle="modal"
-                    data-target="#exampleModalCenter">
-                    Xóa sản phẩm
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn xóa sản phẩm này hay
-                                    không?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="mt-4" id="formDeleteProduct" action="/seller/shop/product-detail/update/delete-product" method="post">
-                                    <div class="form-row">
-                                        <button type="button" class="btn btn-secondary mr-2"
-                                            data-dismiss="modal">Không</button>
-                                        <button type="submit" class="btn btn-primary">Có</button>
-                                        <input type="number" class="invisible" name="proId" value="{{{product.ma_so}}}"/>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
+            <div class="row mt-2">
                 <div class="col-sm-5 ">
                     <img class="rounded img-fluid" src="/assets/photo-storage/{{{product.hinh_anh}}}" />
                 </div>
@@ -83,11 +50,24 @@
                     <dl class="param param-feature mt-4">
                         <dt>Thông tin sản phẩm:</dt>
                         <dd class="mt-2 ml-3">Cửa hàng kinh doanh: {{{shop.ten_cua_hang}}}</dd>
-                        <dd class="mt-2 ml-3">Người bán: {{{user.ten_dang_nhap}}}</dd>
+                        <dd class="mt-2 ml-3">Người bán: {{{seller.ten_dang_nhap}}}</dd>
                         <dd class="mt-2 ml-3">Loại sản phẩm: {{{category.ten}}}</dd>
-                        <dd class="mt-2 ml-3 text-danger">Số lượng: {{{product.so_luong}}}</dd>
+                        <dd class="mt-2 ml-3 text-danger">Số lượng tồn kho: {{{product.so_luong}}}</dd>
                     </dl>
-
+                    </hr>
+                    <form class="ml-3" action="/buyer/update/add-to-cart" method="post">
+                        <div class="form-group row">
+                            <label for="inputQualityNeed" class="col-3 col-form-label">Số lượng mua: </label>
+                            <div class="col-2">
+                                <input type="number" class="form-control" id="inputQualityNeed" name="qualityNeed"
+                                    value="1" min="1" max="{{{product.so_luong}}}">
+                                <input type="number" class="form-control invisible" id="inputProId" name="proId"
+                                    value="{{{product.ma_so}}}">
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-danger"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                            hàng</button>
+                    </form>
                 </div>
             </div>
             <div class="row ml-1 mt-4">

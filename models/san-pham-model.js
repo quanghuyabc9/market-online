@@ -1,7 +1,7 @@
 const db = require('../utils/db');
 const tbName = 'san_pham';
 const mysql = require('mysql');
-const  pageSize=6;
+const pageSize = 6;
 
 module.exports = {
     all: async () => {
@@ -40,7 +40,7 @@ module.exports = {
 
     getBySellerID: async sellerID => {
         let sql = 'SELECT * FROM ?? WHERE ?? = ?';
-        const params = [tbName, 'SellerID', sellerID];
+        const params = [tbName, 'cua_hang', sellerID];
         sql = mysql.format(sql, params);
         const rs = await db.load(sql);
         if (rs.length > 0) {
@@ -58,46 +58,70 @@ module.exports = {
         const sql = `DELETE FROM ${tbName} WHERE ma_so = ${prodId}`;
         const rows = await db.load(sql);
         return rows;
-    }, 
+    },
 
-    allByPaging: async (page)=>{
-        let sql= `SELECT count(*) AS total FROM ${tbName}`;
-        const rs= await db.load(sql);
-        const totalPage=rs[0].total;
+    allByPaging: async (page) => {
+        let sql = `SELECT count(*) AS total FROM ${tbName}`;
+        const rs = await db.load(sql);
+        const totalPage = rs[0].total;
         //console.log(totalPage);
-        const pageTotal=Math.floor(totalPage / pageSize)+1;
-        const offset= (page -1)* pageSize;
-        sql= `SELECT * FROM ${tbName} LIMIT ${pageSize} OFFSET ${offset}`;
-        const rows= await db.load(sql);
+        const pageTotal = Math.floor(totalPage / pageSize) + 1;
+        const offset = (page - 1) * pageSize;
+        sql = `SELECT * FROM ${tbName} LIMIT ${pageSize} OFFSET ${offset}`;
+        const rows = await db.load(sql);
         return {
             pageTotal: pageTotal,
             products: rows
         };
     },
 
-    allByIdPaging: async (id,page)=>{
-        let sql= `SELECT count(*) AS total FROM ${tbName} WHERE loai_san_pham=${id}`;
-        const rs= await db.load(sql);
-        const totalPage=rs[0].total;
-        const pageTotal=Math.floor(totalPage / pageSize)+1;
-        const offset= (page -1)* pageSize;
-        sql= `SELECT * FROM ${tbName} WHERE loai_san_pham= ${id} LIMIT ${pageSize} OFFSET ${offset}`;
-        const rows= await db.load(sql);
+    allByIdPaging: async (id, page) => {
+        let sql = `SELECT count(*) AS total FROM ${tbName} WHERE loai_san_pham=${id}`;
+        const rs = await db.load(sql);
+        const totalPage = rs[0].total;
+        const pageTotal = Math.floor(totalPage / pageSize) + 1;
+        const offset = (page - 1) * pageSize;
+        sql = `SELECT * FROM ${tbName} WHERE loai_san_pham= ${id} LIMIT ${pageSize} OFFSET ${offset}`;
+        const rows = await db.load(sql);
         return {
             pageTotal: pageTotal,
             products: rows
         };
     },
 
-    allSearchNameProALL: async(name)=>{
-        let sql =`SELECT * FROM ${tbName} WHERE ten_san_pham LIKE '%${name}%'`;
-        const rows=await db.load(sql);
+    allByName: async (name) => {
+        let sql = `SELECT * FROM ${tbName} WHERE ten_san_pham LIKE '%${name}%'`;
+        const rows = await db.load(sql);
         return rows;
     },
-    
-    allByProId: async i=>{
-        const sql=`SELECT *FROM ${tbName} WHERE ma_so=${i}`;
-        const rows=await db.load(sql);
+
+    allByNameByShopId: async (name, shopId) => {
+        let sql = `SELECT * FROM ${tbName} WHERE ten_san_pham LIKE '%${name}%' AND cua_hang = ${shopId}`;
+        const rows = await db.load(sql);
         return rows;
     },
+
+    allByProId: async i => {
+        const sql = `SELECT *FROM ${tbName} WHERE ma_so=${i}`;
+        const rows = await db.load(sql);
+        return rows;
+    },
+
+    updateNoFile: async (id, name, price, quantity, description, category) => {
+        let sql = `
+        UPDATE ${tbName}
+        SET ten_san_pham = '${name}', gia_tien = ${price}, so_luong = '${quantity}', mo_ta = '${description}', loai_san_pham = ${category}
+        WHERE ma_so = ${id};`
+        const res = await db.load(sql);
+        return res;
+    },
+
+    updateWithFile: async (id, name, price, quantity, description, avatar, category) => {
+        let sql = `
+        UPDATE ${tbName}
+        SET ten_san_pham = '${name}', gia_tien = ${price}, so_luong = '${quantity}', mo_ta = '${description}', hinh_anh = '${avatar}', loai_san_pham = ${category}
+        WHERE ma_so = ${id};`
+        const res = await db.load(sql);
+        return res;
+    }
 };

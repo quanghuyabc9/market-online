@@ -36,6 +36,4 @@ module.exports = {
         const rows=await db.load(sql);
         return rows;
     },
-
-    
 }
